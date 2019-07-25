@@ -48,13 +48,13 @@ body {
 
 .arrow--position1 {
     position: absolute;
-    top: 40%;
+    top: 50%;
     transform: rotate(-45deg);
 }
 
 .arrow--position2 {
     position: absolute;
-    top: 20%;
+    top: 40%;
     right: 0;
     transform: rotate(135deg);
 }
@@ -82,6 +82,7 @@ body {
     transform: rotate(-45deg);
 }
 
+/* header */
 .header__arrowDate {
     border-top: 2px solid black;
     border-left: 2px solid black;
@@ -162,6 +163,43 @@ body {
 /* schedule */
 .schedule {
     overflow-x: hidden;
+    position: relative;
+}
+
+/* time bar */
+.schedule__timeBar {
+    position: absolute;
+    top: 630px;
+    width: 100%;
+    z-index: 9999;
+}
+
+.schedule__line {
+    height: 1px;
+    width: 100%;
+    background-color: red;
+    position: relative;
+}
+
+/* .schedule__line > span:nth-child(1) {
+    display: block;
+    width: 14px;
+    height: 16px;
+    transform: rotate(45deg);
+} */
+
+.schedule__line > span:nth-child(2) {
+    position: absolute;
+    top: -9px;
+    left: 33px;
+    display: block;
+    width: 43px;
+    height: 19px;
+    background-color: red;
+    font-size: 13px;
+    text-align: center;
+    border-radius:12px;
+    color: white;
 }
 
 .schedule__topInfo {
@@ -175,6 +213,7 @@ body {
     overflow-y: scroll;
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
 .schedule__plan {
@@ -329,6 +368,10 @@ body {
     transform: rotate(45deg);
     cursor: pointer;
     transition: opacity 0.2s;
+}
+
+.schedule__iconClose--inActive {
+    display: none;
 }
 
 .schedule__iconClose:hover {

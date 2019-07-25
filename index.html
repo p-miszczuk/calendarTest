@@ -48,197 +48,308 @@
             </div>
             
             <div class="schedule">
-                    <div class="schedule__topInfo">
-                        <div class="schedule__staticBox">
-                            <div class="schedule__box schedule__box--days">Uhrzeit</div>
-                        </div>
-                        <div class="schedule__daysBox">
-                            <div class="schedule__box schedule__box--days">Mo 06.07.</div>
-                            <div class="schedule__box schedule__box--days">Di 07.07.</div>
-                            <div class="schedule__box schedule__box--days">Mi 08.07.</div>
-                            <div class="schedule__box schedule__box--days">Do 09.07.</div>
-                            <div class="schedule__box schedule__box--days">Fr 10.07.</div>
-                            <div class="schedule__box schedule__box--days">Sa 11.07.</div>
-                            <div class="schedule__box schedule__box--days">Sa 12.07.</div>
+
+                <div class="schedule__topInfo">
+                    
+                    <div class="schedule__staticBox">
+                        <div class="schedule__box schedule__box--days">Uhrzeit</div>
+                    </div>
+                    <div class="schedule__daysBox">
+                        <div class="schedule__box schedule__box--days">Mo 06.07.</div>
+                        <div class="schedule__box schedule__box--days">Di 07.07.</div>
+                        <div class="schedule__box schedule__box--days">Mi 08.07.</div>
+                        <div class="schedule__box schedule__box--days">Do 09.07.</div>
+                        <div class="schedule__box schedule__box--days">Fr 10.07.</div>
+                        <div class="schedule__box schedule__box--days">Sa 11.07.</div>
+                        <div class="schedule__box schedule__box--days">Sa 12.07.</div>
+                    </div>
+                </div>
+
+                <!-- schedule boxes -->
+                <div class="schedule__boxes">
+                    <div class="schedule__timeBar">
+                        <div class="schedule__line">
+                            <span></span>
+                            <span>10:30</span>
+                            <span></span>
                         </div>
                     </div>
 
-                    <!-- schedule boxes -->
-                    <div class="schedule__boxes">
-                        <div class="schedule__time">
-                            <div class="schedule__box schedule__box--time">06:00</div>
-                            <div class="schedule__box schedule__box--time">07:00</div>
-                            <div class="schedule__box schedule__box--time">08:00</div>
-                            <div class="schedule__box schedule__box--time">09:00</div>
-                            <div class="schedule__box schedule__box--time">10:00</div>
-                            <div class="schedule__box schedule__box--time">11:00</div>
-                            <div class="schedule__box schedule__box--time">12:00</div>
-                            <div class="schedule__box schedule__box--time">13:00</div>
-                            <div class="schedule__box schedule__box--time">14:00</div>
-                            <div class="schedule__box schedule__box--time">15:00</div>
-                            <div class="schedule__box schedule__box--time">16:00</div>
-                            <div class="schedule__box schedule__box--time">17:00</div>
-                            <div class="schedule__box schedule__box--time">18:00</div>
-                            <div class="schedule__box schedule__box--time">19:00</div>
-                            <div class="schedule__box schedule__box--time">20:00</div>
+                    <div class="schedule__hour">
+                        <div class="schedule__box schedule__box--time">06:00</div>
+                        <div class="schedule__box schedule__box--time">07:00</div>
+                        <div class="schedule__box schedule__box--time">08:00</div>
+                        <div class="schedule__box schedule__box--time">09:00</div>
+                        <div class="schedule__box schedule__box--time">10:00</div>
+                        <div class="schedule__box schedule__box--time">11:00</div>
+                        <div class="schedule__box schedule__box--time">12:00</div>
+                        <div class="schedule__box schedule__box--time">13:00</div>
+                        <div class="schedule__box schedule__box--time">14:00</div>
+                        <div class="schedule__box schedule__box--time">15:00</div>
+                        <div class="schedule__box schedule__box--time">16:00</div>
+                        <div class="schedule__box schedule__box--time">17:00</div>
+                        <div class="schedule__box schedule__box--time">18:00</div>
+                        <div class="schedule__box schedule__box--time">19:00</div>
+                        <div class="schedule__box schedule__box--time">20:00</div>
+                    </div>
+
+                    <div class="schedule__plan">
+                        <!-- 1 day -->
+                        <div class="schedule__dayColumn">
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+
+                            <!-- tasks -->
+                            <div class="schedule__tasks">
+                                <div class="schedule__free schedule__task--60"></div>
+                                <div class="schedule__free schedule__task--60"></div>
+                                <div class="schedule__free schedule__task--30"></div>
+                                <div class="schedule__task schedule__task--45 schedule__task--after">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">08.30 - 09.15</time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 1</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark">!</span>
+                                        <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                        <span class="schedule__iconClose schedule__iconClose--inActive">+</span>
+                                    </div>
+                                </div>
+                                <div class="schedule__task schedule__task--15 schedule__task--after">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">09.15 - 09.30</time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 2</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark"></span>
+                                        <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                        <span class="schedule__iconClose schedule__iconClose--inActive">+</span>
+                                    </div>
+                                </div>
+                                <div class="schedule__free schedule__task--30"></div>
+
+                                <div class="schedule__task schedule__task--45 schedule__task--after">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">10.00 - 10.45</time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 3</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark">!</span>
+                                        <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                        <span class="schedule__iconClose schedule__iconClose--inActive">+</span>
+                                    </div>
+                                </div>
+
+                                <div class="schedule__task schedule__task--45 schedule__task--after">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">10.45 - 11.15 </time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 4</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark">!</span>
+                                        <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                        <span class="schedule__iconClose schedule__iconClose--inActive">+</span>
+                                    </div>
+                                </div>
+                                <div class="schedule__free schedule__task--60"></div>
+                                <div class="schedule__task schedule__task--45 schedule__task--after">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">12.15 - 13.00 </time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 5</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark">!</span>
+                                        <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                        <span class="schedule__iconClose schedule__iconClose--inActive">+</span>
+                                    </div>
+                                </div>
+                                <div class="schedule__task schedule__task--45 schedule__task--after">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">13.00 - 13.45 </time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 6</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark">!</span>
+                                        <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                        <span class="schedule__iconClose schedule__iconClose--inActive">+</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
 
-                        <div class="schedule__plan">
-                            <!-- 1 day -->
-                            <div class="schedule__dayColumn">
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
+                        <!-- 2 day -->
+                        <div class="schedule__dayColumn">
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
 
-                                <!-- tasks -->
-                                <div class="schedule__tasks">
+                            <!-- tasks -->
+                            <div class="schedule__tasks">
+                                <div class="schedule__free schedule__task--60"></div>
+                                <div class="schedule__free schedule__task--60"></div>
+                                <div class="schedule__task schedule__task--15 schedule__task--after">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">08.00 - 08.15</time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 1</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark">!</span>
+                                        <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                        <span class="schedule__iconClose schedule__iconClose--inActive">+</span>
+                                    </div>
+                                </div>
+                                <div class="schedule__task schedule__task--30 schedule__task--after">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">08.15 - 08.45</time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 2</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark">!</span>
+                                        <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                        <span class="schedule__iconClose schedule__iconClose--inActive">+</span>
+                                    </div>
+                                </div>
+
+                                <div class="schedule__task schedule__task--30 schedule__task--after">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">08.45 - 09.15</time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 3</p>
+                                    <div class="schedule__additionalInfo">
+                                    <span class="schedule__mark">!</span>
+                                        <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                        <span class="schedule__iconClose schedule__iconClose--inActive">+</span>
+                                    </div>
+                                </div>
+
+                                <div class="schedule__free schedule__task--60"></div>
+
+                                <div class="schedule__task schedule__task--30 schedule__task--now">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">10.15 - 10.45 </time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 4</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark schedule__task--active">!</span>
+                                        <span class="schedule__iconSmile iconhelp2">&#128578;</span>
+                                        <span class="schedule__iconClose schedule__iconClose--inActive">+</span>
+                                    </div>
+                                </div>
+                                <div class="schedule__free schedule__task--60"></div>
+                                <div class="schedule__task schedule__task--45 schedule__task--before">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">12.15 - 13.00 </time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 5</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark"></span>
+                                        <span class="schedule__iconClose">+</span>
+                                    </div>
+                                </div>
+                                <div class="schedule__task schedule__task--45 schedule__task--before">
+                                    <p class="schedule__taskTime">
+                                        <time datetime="08:00">13.00 - 13.45 </time>
+                                    </p>
+                                    <p class="schedule__taskText">Task 6</p>
+                                    <div class="schedule__additionalInfo">
+                                        <span class="schedule__mark"></span>
+                                        <span class="schedule__iconClose">+</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <!-- 3 day -->
+                        <div class="schedule__dayColumn">
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+
+                            <div class="schedule__tasks">
+                                    
                                     <div class="schedule__free schedule__task--60"></div>
-                                    <div class="schedule__free schedule__task--60"></div>
-                                    <div class="schedule__free schedule__task--30"></div>
-                                    <div class="schedule__task schedule__task--45 schedule__task--after">
+                                    <div class="schedule__task schedule__task--60 schedule__task--before">
                                         <p class="schedule__taskTime">
-                                            <time datetime="08:00">08.30 - 09.15</time>
+                                            <time datetime="08:00">07.00 - 08.00</time>
                                         </p>
                                         <p class="schedule__taskText">Task 1</p>
-                                        <div class="schedule__additionalInfo">
-                                            <span class="schedule__mark">!</span>
-                                            <span class="schedule__iconSmile iconhelp1">&#128578;</span>
-                                        </div>
-                                    </div>
-                                    <div class="schedule__task schedule__task--15 schedule__task--after">
-                                        <p class="schedule__taskTime">
-                                            <time datetime="08:00">09.15 - 09.30</time>
-                                        </p>
-                                        <p class="schedule__taskText">Task 2</p>
                                         <div class="schedule__additionalInfo">
                                             <span class="schedule__mark"></span>
-                                            <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                            <span class="schedule__iconClose">+</span>
                                         </div>
                                     </div>
-                                    <div class="schedule__free schedule__task--30"></div>
-
-                                    <div class="schedule__task schedule__task--45 schedule__task--after">
+                                    <div class="schedule__free schedule__task--45"></div>
+                                    <div class="schedule__task schedule__task--60 schedule__task--before">
                                         <p class="schedule__taskTime">
-                                            <time datetime="08:00">10.00 - 10.45</time>
-                                        </p>
-                                        <p class="schedule__taskText">Task 3</p>
-                                        <div class="schedule__additionalInfo">
-                                            <span class="schedule__mark">!</span>
-                                            <span class="schedule__iconSmile iconhelp1">&#128578;</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="schedule__task schedule__task--45 schedule__task--after">
-                                        <p class="schedule__taskTime">
-                                            <time datetime="08:00">10.45 - 11.15 </time>
-                                        </p>
-                                        <p class="schedule__taskText">Task 4</p>
-                                        <div class="schedule__additionalInfo">
-                                            <span class="schedule__mark">!</span>
-                                            <span class="schedule__iconSmile iconhelp1">&#128578;</span>
-                                        </div>
-                                    </div>
-                                    <div class="schedule__free schedule__task--60"></div>
-                                    <div class="schedule__task schedule__task--45 schedule__task--after">
-                                        <p class="schedule__taskTime">
-                                            <time datetime="08:00">12.15 - 13.00 </time>
-                                        </p>
-                                        <p class="schedule__taskText">Task 5</p>
-                                        <div class="schedule__additionalInfo">
-                                            <span class="schedule__mark">!</span>
-                                            <span class="schedule__iconSmile iconhelp1">&#128578;</span>
-                                        </div>
-                                    </div>
-                                    <div class="schedule__task schedule__task--45 schedule__task--after">
-                                        <p class="schedule__taskTime">
-                                            <time datetime="08:00">13.00 - 13.45 </time>
-                                        </p>
-                                        <p class="schedule__taskText">Task 6</p>
-                                        <div class="schedule__additionalInfo">
-                                            <span class="schedule__mark">!</span>
-                                            <span class="schedule__iconSmile iconhelp1">&#128578;</span>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-
-                            <!-- 2 day -->
-                            <div class="schedule__dayColumn">
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-
-                                <!-- tasks -->
-                                <div class="schedule__tasks">
-                                    <div class="schedule__free schedule__task--60"></div>
-                                    <div class="schedule__free schedule__task--60"></div>
-                                    <div class="schedule__task schedule__task--15 schedule__task--after">
-                                        <p class="schedule__taskTime">
-                                            <time datetime="08:00">08.00 - 08.15</time>
-                                        </p>
-                                        <p class="schedule__taskText">Task 1</p>
-                                        <div class="schedule__additionalInfo">
-                                            <span class="schedule__mark">!</span>
-                                            <span class="schedule__iconSmile iconhelp1">&#128578;</span>
-                                        </div>
-                                    </div>
-                                    <div class="schedule__task schedule__task--30 schedule__task--after">
-                                        <p class="schedule__taskTime">
-                                            <time datetime="08:00">08.15 - 08.45</time>
+                                            <time datetime="08:00">08.45 - 08.45</time>
                                         </p>
                                         <p class="schedule__taskText">Task 2</p>
                                         <div class="schedule__additionalInfo">
                                             <span class="schedule__mark">!</span>
-                                            <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                            <span class="schedule__iconClose">+</span>
                                         </div>
                                     </div>
 
-                                    <div class="schedule__task schedule__task--30 schedule__task--after">
+                                    <div class="schedule__task schedule__task--30 schedule__task--before">
                                         <p class="schedule__taskTime">
                                             <time datetime="08:00">08.45 - 09.15</time>
                                         </p>
                                         <p class="schedule__taskText">Task 3</p>
                                         <div class="schedule__additionalInfo">
-                                        <span class="schedule__mark">!</span>
-                                            <span class="schedule__iconSmile iconhelp1">&#128578;</span>
+                                            <span class="schedule__mark">!</span>
+                                            <span class="schedule__iconClose">+</span>
                                         </div>
                                     </div>
 
                                     <div class="schedule__free schedule__task--60"></div>
 
-                                    <div class="schedule__task schedule__task--30 schedule__task--now">
+                                    <div class="schedule__task schedule__task--30 schedule__task--before">
                                         <p class="schedule__taskTime">
                                             <time datetime="08:00">10.15 - 10.45 </time>
                                         </p>
                                         <p class="schedule__taskText">Task 4</p>
                                         <div class="schedule__additionalInfo">
-                                            <span class="schedule__mark schedule__task--active">!</span>
-                                            <span class="schedule__iconSmile iconhelp2">&#128578;</span>
+                                            <span class="schedule__mark">!</span>
+                                            <span class="schedule__iconClose">+</span>
                                         </div>
                                     </div>
                                     <div class="schedule__free schedule__task--60"></div>
@@ -248,7 +359,7 @@
                                         </p>
                                         <p class="schedule__taskText">Task 5</p>
                                         <div class="schedule__additionalInfo">
-                                            <span class="schedule__mark"></span>
+                                            <span class="schedule__mark">!</span>
                                             <span class="schedule__iconClose">+</span>
                                         </div>
                                     </div>
@@ -258,184 +369,92 @@
                                         </p>
                                         <p class="schedule__taskText">Task 6</p>
                                         <div class="schedule__additionalInfo">
-                                            <span class="schedule__mark"></span>
+                                            <span class="schedule__mark">!</span>
                                             <span class="schedule__iconClose">+</span>
                                         </div>
                                     </div>
                                     
                                 </div>
-                            </div>
 
-                            <!-- 3 day -->
-                            <div class="schedule__dayColumn">
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
+                        </div>
 
-                                <div class="schedule__tasks">
-                                        
-                                        <div class="schedule__free schedule__task--60"></div>
-                                        <div class="schedule__task schedule__task--60 schedule__task--before">
-                                            <p class="schedule__taskTime">
-                                                <time datetime="08:00">07.00 - 08.00</time>
-                                            </p>
-                                            <p class="schedule__taskText">Task 1</p>
-                                            <div class="schedule__additionalInfo">
-                                                <span class="schedule__mark"></span>
-                                                <span class="schedule__iconClose">+</span>
-                                            </div>
-                                        </div>
-                                        <div class="schedule__free schedule__task--45"></div>
-                                        <div class="schedule__task schedule__task--60 schedule__task--before">
-                                            <p class="schedule__taskTime">
-                                                <time datetime="08:00">08.45 - 08.45</time>
-                                            </p>
-                                            <p class="schedule__taskText">Task 2</p>
-                                            <div class="schedule__additionalInfo">
-                                                <span class="schedule__mark">!</span>
-                                                <span class="schedule__iconClose">+</span>
-                                            </div>
-                                        </div>
-    
-                                        <div class="schedule__task schedule__task--30 schedule__task--before">
-                                            <p class="schedule__taskTime">
-                                                <time datetime="08:00">08.45 - 09.15</time>
-                                            </p>
-                                            <p class="schedule__taskText">Task 3</p>
-                                            <div class="schedule__additionalInfo">
-                                                <span class="schedule__mark">!</span>
-                                                <span class="schedule__iconClose">+</span>
-                                            </div>
-                                        </div>
-    
-                                        <div class="schedule__free schedule__task--60"></div>
-    
-                                        <div class="schedule__task schedule__task--30 schedule__task--before">
-                                            <p class="schedule__taskTime">
-                                                <time datetime="08:00">10.15 - 10.45 </time>
-                                            </p>
-                                            <p class="schedule__taskText">Task 4</p>
-                                            <div class="schedule__additionalInfo">
-                                                <span class="schedule__mark">!</span>
-                                                <span class="schedule__iconClose">+</span>
-                                            </div>
-                                        </div>
-                                        <div class="schedule__free schedule__task--60"></div>
-                                        <div class="schedule__task schedule__task--45 schedule__task--before">
-                                            <p class="schedule__taskTime">
-                                                <time datetime="08:00">12.15 - 13.00 </time>
-                                            </p>
-                                            <p class="schedule__taskText">Task 5</p>
-                                            <div class="schedule__additionalInfo">
-                                                <span class="schedule__mark">!</span>
-                                                <span class="schedule__iconClose">+</span>
-                                            </div>
-                                        </div>
-                                        <div class="schedule__task schedule__task--45 schedule__task--before">
-                                            <p class="schedule__taskTime">
-                                                <time datetime="08:00">13.00 - 13.45 </time>
-                                            </p>
-                                            <p class="schedule__taskText">Task 6</p>
-                                            <div class="schedule__additionalInfo">
-                                                <span class="schedule__mark">!</span>
-                                                <span class="schedule__iconClose">+</span>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
+                        <!-- 4 day -->
+                        <div class="schedule__dayColumn">
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                        </div>
 
-                            </div>
+                        <!-- 5 day -->
+                        <div class="schedule__dayColumn">
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                        </div>
 
-                            <!-- 4 day -->
-                            <div class="schedule__dayColumn">
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                            </div>
+                        <!-- 6 day -->
+                        <div class="schedule__dayColumn">
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                        </div>
 
-                            <!-- 5 day -->
-                            <div class="schedule__dayColumn">
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                            </div>
-
-                            <!-- 6 day -->
-                            <div class="schedule__dayColumn">
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                            </div>
-
-                            <!-- 7 day -->
-                            <div class="schedule__dayColumn">
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                                <div class="schedule__box schedule__box--time"></div>
-                            </div>
+                        <!-- 7 day -->
+                        <div class="schedule__dayColumn">
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
+                            <div class="schedule__box schedule__box--time"></div>
                         </div>
                     </div>
-                
+                </div>
             </div>
         </div>
     </div>
