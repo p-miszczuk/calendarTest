@@ -207,7 +207,7 @@ body {
 }
 
 .schedule__box--time {
-    height: 150px;
+    height: 160px;
     border-right: 1px solid black;
     border-top: 1px solid black;
 }
@@ -225,14 +225,67 @@ body {
 }
 
 /* boxes */
-.schedule__planBackground {
-    width: 140px;
-    height: 150px;
-    border-right: 1px solid black;
-    /* border-bottom: 1px solid black; */
-    border-top: 1px solid black;
-}
-
 .schedule__dayColumn {
     position: relative;
+}
+
+/* schedule tasks*/
+.schedule__tasks {
+    position: absolute;
+    width: 137px;
+    left: 1px;
+    top: 0;
+}
+
+.schedule__task {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 2px 0;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.schedule__free {
+    background-color: transparent;
+    margin: 1px 0;
+}
+
+.schedule__task--after {
+    background-color: aquamarine;
+}
+
+.schedule__task--before {
+    background-color: aqua;
+}
+
+.schedule__task--15 {
+    height: 38px;
+}
+
+.schedule__task--30 {
+    height: 78px;
+}
+
+.schedule__task--45 {
+    height: 118px;
+}
+
+.schedule__task--60 {
+    height: 158px;
+}
+
+/* inside task */
+.schedule__additionalInfo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.schedule__taskTime {
+    font-size: 13px;
+}
+
+.schedule__taskText {
+    font-size: 12px;
 }
