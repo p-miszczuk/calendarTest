@@ -8,35 +8,25 @@ body {
 }
 
 * {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 /* scrollbar */
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-    }
-    
-    :-webkit-scrollbar-button:start:decrement,
-    ::-webkit-scrollbar-button:end:increment {
-    height: 30px;
-    display: block;
-    background-color: transparent;
-    }
-    
-    ::-webkit-scrollbar-track-piece {
-    background-color: transparent;
-    -webkit-border-radius: 6px;
-    }
-    
-    ::-webkit-scrollbar-thumb:vertical {
-    height: 50px;
-    background-color: transparent;
-    border: 1px solid transparent;
-    -webkit-border-radius: 6px;
-    }
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: darkslategray;
+    border-radius: 5px;
+}
 
 /* arrows style */
 .arrow {
@@ -49,14 +39,16 @@ body {
 .arrow--position1 {
     position: absolute;
     top: 50%;
-    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
 }
 
 .arrow--position2 {
     position: absolute;
     top: 40%;
     right: 0;
-    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
 }
 
 .header__doubleArrows {
@@ -64,14 +56,16 @@ body {
 }
 
 .arrow--doubleArrow1 {
-    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
     position: absolute;
     top: 2px;
     right: 2px;
 }
 
 .arrow--doubleArrow2 {
-    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
 }
 
 .arrow > span {
@@ -79,7 +73,8 @@ body {
     width: 18px;
     height: 18px;
     background-color: black;
-    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
 }
 
 /* header */
@@ -93,11 +88,13 @@ body {
 }
 
 .header__arrowDate--left {
-    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
 }
 
 .header__arrowDate--right {
-    transform: rotate(-225deg);
+    -webkit-transform: rotate(-225deg);
+            transform: rotate(-225deg);
 }
 
 /* calendar */
@@ -109,7 +106,8 @@ body {
     position: fixed;
     top: 5px;
     left: 50%;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
     position: relative;
 }
 
@@ -122,26 +120,49 @@ body {
 }
 
 .header__name {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     height: 40px;
-    align-items: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     padding: 5px;
 }
 
 .header__nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     position: relative;
     height: 40px;
 }
 
 .header__dateChange {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .header__days {
@@ -181,21 +202,33 @@ body {
     position: relative;
 }
 
-/* .schedule__line > span:nth-child(1) {
+.schedule__line > span {
+    background-color: red;
+    position: absolute;
     display: block;
-    width: 14px;
-    height: 16px;
-    transform: rotate(45deg);
-} */
+}
+
+.schedule__line > span:nth-child(1), .schedule__line > span:nth-child(3) {
+    top: -2px;
+    width: 5px;
+    height: 5px;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+.schedule__line > span:nth-child(1) {
+    left: 31px;
+}
+
+.schedule__line > span:nth-child(3) {
+    left: 73px;
+}
 
 .schedule__line > span:nth-child(2) {
-    position: absolute;
     top: -9px;
     left: 33px;
-    display: block;
     width: 43px;
     height: 19px;
-    background-color: red;
     font-size: 13px;
     text-align: center;
     border-radius:12px;
@@ -203,25 +236,40 @@ body {
 }
 
 .schedule__topInfo {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
 }
 
 .schedule__boxes {
     width: 100%;
     height: 78vh;
     overflow-y: scroll;
+    overflow-x: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     position: relative;
 }
 
 .schedule__plan {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 
 }
 
 .schedule__daysBox {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
     /* flex-direction: row; */
 }
@@ -277,8 +325,13 @@ body {
 
 .schedule__task {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     margin: 2px 0;
     padding: 1px;
     border-radius: 4px;
@@ -338,11 +391,13 @@ body {
 }
 
 .iconhelp1 {
-    filter: sepia(1) saturate(6) hue-rotate(98deg);
+    -webkit-filter: sepia(1) saturate(6) hue-rotate(98deg);
+            filter: sepia(1) saturate(6) hue-rotate(98deg);
 }
 
 .iconhelp2 {
-    filter: sepia(2) saturate(6) hue-rotate(320deg);     
+    -webkit-filter: sepia(2) saturate(6) hue-rotate(320deg);
+            filter: sepia(2) saturate(6) hue-rotate(320deg);     
 }
 
 .schedule__mark {
@@ -365,8 +420,10 @@ body {
     height: 14px;
     text-align: center;
     line-height: 8px;
-    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
     cursor: pointer;
+    -webkit-transition: opacity 0.2s;
     transition: opacity 0.2s;
 }
 
