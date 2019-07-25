@@ -75,7 +75,7 @@ body {
 
 /* calendar */
 .calendar__wrapper {
-    width: 820px;
+    width: 920px;
     height: 95vh;
     overflow: hidden;
     background-color: grey;
@@ -87,7 +87,7 @@ body {
 }
 
 .calendar {
-    width: 800px;
+    width: 900px;
     height: 91vh;
     border: 1px solid green;
     margin: 10px auto;
@@ -138,12 +138,23 @@ body {
 .schedule {
     overflow-x: hidden;
 }
-.schedule__content {
+
+.schedule__topInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.schedule__boxes {
     width: 100%;
     height: 73vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: row;
+}
+
+.schedule__plan {
     background-color: aqua;
     line-height: 5;
-    overflow-y: scroll;
 }
 
 .schedule__daysBox {
@@ -152,10 +163,33 @@ body {
 }
 
 .schedule__box {
-    width: 150px;
+    width: 140px;
     height: 30px;
     line-height: 29px;
-    border: 1px solid black;
-    border-right: 0;
     text-align: center;
+}
+
+.schedule__box--days {
+    height: 30px;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.schedule__staticBox > .schedule__box--days {
+    border-left: 0;
+}
+
+.schedule__box--time {
+    height: 150px;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.schedule__box--time:first-child {
+    border-top: 0;
+}
+
+.schedule__box--time:last-child {
+    border-bottom: 1px solid black;
 }
