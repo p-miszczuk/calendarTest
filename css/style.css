@@ -4,7 +4,7 @@
 }
 body {
     background-color: black;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -24,7 +24,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: darkslategray;
+    background-color: #7d7c7c;
     border-radius: 5px;
 }
 
@@ -102,7 +102,7 @@ body {
     width: 820px;
     height: 98vh;
     overflow: hidden;
-    background-color: grey;
+    background-color: #e6e3df;
     position: fixed;
     top: 5px;
     left: 50%;
@@ -134,7 +134,7 @@ body {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    padding: 5px;
+    padding: 5px 5px 5px 15px;
 }
 
 .header__nav {
@@ -198,12 +198,12 @@ body {
 .schedule__line {
     height: 1px;
     width: 100%;
-    background-color: red;
+    background-color: #e86735;
     position: relative;
 }
 
 .schedule__line > span {
-    background-color: red;
+    background-color: #e86735;
     position: absolute;
     display: block;
 }
@@ -233,6 +233,7 @@ body {
     text-align: center;
     border-radius:12px;
     color: white;
+    line-height: 19px;
 }
 
 .schedule__topInfo {
@@ -247,7 +248,7 @@ body {
 
 .schedule__boxes {
     width: 100%;
-    height: 78vh;
+    height: 76vh;
     overflow-y: scroll;
     overflow-x: hidden;
     display: -webkit-box;
@@ -271,7 +272,10 @@ body {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    /* flex-direction: row; */
+}
+
+.schedule__activeDay {
+    background-color: #f2f2f2 !important; 
 }
 
 .schedule__box {
@@ -283,9 +287,14 @@ body {
 
 .schedule__box--days {
     height: 30px;
-    border-right: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    font-size: 14px;
+    border-right: 1px solid#f5f5f5;
+    border-top: 1px solid#f5f5f5;
+    border-bottom: 1px solid#f5f5f5;
+}
+
+.schedule__box--weekend {
+    color: lightgray;
 }
 
 .schedule__staticBox > .schedule__box--days {
@@ -294,20 +303,21 @@ body {
 
 .schedule__box--time {
     height: 140px;
-    border-right: 1px solid black;
-    border-top: 1px solid black;
+    border-right: 1px solid #f5f5f5;;
+    border-top: 1px solid #f5f5f5;;
+    font-size: 14px;
 }
 
 .schedule__box--time:nth-child(odd) {
-    background-color: rgb(228, 226, 226);
+    background-color: #faf9f9;
 }
 
 .schedule__box--time:first-child {
     border-top: 0;
 }
 
-.schedule__box--time:last-child {
-    border-bottom: 1px solid black;
+div.schedule__box--time:nth-child(15) {
+    border-bottom: 1px solid#f5f5f5;
 }
 
 /* boxes */
@@ -318,9 +328,9 @@ body {
 /* schedule tasks*/
 .schedule__tasks {
     position: absolute;
-    width: 107px;
-    left: 1px;
-    top: 0;
+    width: 109px;
+    left: 0px;
+    top: 0px;
 }
 
 .schedule__task {
@@ -332,42 +342,42 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    margin: 2px 0;
+    margin: 1px 0 1px 0;
     padding: 1px;
-    border-radius: 4px;
+    border: 1px solid white;
 }
 
 .schedule__free {
     background-color: transparent;
-    margin: 2px 0;
+    margin: 1px 0 1px 0;
 }
 
 .schedule__task--after {
-    background-color: lightblue;
+    background-color: #d6ecff;
 }
 
 .schedule__task--before {
-    background-color: aqua;
+    background-color: #93d7fb;
 }
 
 .schedule__task--now {
-    background-color: goldenrod;
+    background-color: #fdd466;
 }
 
 .schedule__task--15 {
-    height: 33px;
+    height: 34px;
 }
 
 .schedule__task--30 {
-    height: 68px;
+    height: 69px;
 }
 
 .schedule__task--45 {
-    height: 103px;
+    height: 105px;
 }
 
 .schedule__task--60 {
-    height: 138px;
+    height: 139px;
 }
 
 /* inside task */
@@ -391,13 +401,13 @@ body {
 }
 
 .iconhelp1 {
-    -webkit-filter: sepia(1) saturate(6) hue-rotate(98deg);
-            filter: sepia(1) saturate(6) hue-rotate(98deg);
+    -webkit-filter: sepia(1) saturate(1) hue-rotate(165deg);
+            filter: sepia(1) saturate(1) hue-rotate(165deg);
 }
 
 .iconhelp2 {
-    -webkit-filter: sepia(2) saturate(6) hue-rotate(320deg);
-            filter: sepia(2) saturate(6) hue-rotate(320deg);     
+    -webkit-filter: sepia(1) saturate(2) hue-rotate(340deg);
+            filter: sepia(1) saturate(2) hue-rotate(340deg);     
 }
 
 .schedule__mark {
@@ -423,8 +433,8 @@ body {
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
     cursor: pointer;
-    -webkit-transition: opacity 0.2s;
-    transition: opacity 0.2s;
+    -webkit-transition: opacity 0.1s;
+    transition: opacity 0.1s;
 }
 
 .schedule__iconClose--inActive {
@@ -433,4 +443,25 @@ body {
 
 .schedule__iconClose:hover {
     opacity: 1;
+}
+
+.schedule__button {
+    background-color: #cdcdcd;
+    display: flex;
+    justify-content: center;
+    padding: 4px 0 5px 0;
+}
+
+.schedule__button > button {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.schedule__button > button > span {
+    display: block;
+    width: 10px;
+    height: 1px;
+    background-color: white;
+    margin-top: 1px;
 }
