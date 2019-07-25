@@ -251,11 +251,15 @@ body {
 }
 
 .schedule__task--after {
-    background-color: aquamarine;
+    background-color: lightblue;
 }
 
 .schedule__task--before {
     background-color: aqua;
+}
+
+.schedule__task--now {
+    background-color: goldenrod;
 }
 
 .schedule__task--15 {
@@ -292,9 +296,41 @@ body {
 
 .schedule__iconSmile {
     font-size: 11px;
+}
+
+.iconhelp1 {
     filter: sepia(1) saturate(6) hue-rotate(98deg);
 }
 
+.iconhelp2 {
+    filter: sepia(2) saturate(6) hue-rotate(320deg);     
+}
+
 .schedule__mark {
+    visibility: hidden;
     font-size: 12px;
+}
+
+.schedule__task--active {
+    visibility: visible;
+}
+
+.schedule__iconClose {
+    display: block;
+    opacity: 0;
+    border: 1px solid black;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 17px;
+    width: 14px;
+    height: 14px;
+    text-align: center;
+    line-height: 8px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.schedule__iconClose:hover {
+    opacity: 1;
 }
