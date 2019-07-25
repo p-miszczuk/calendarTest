@@ -12,6 +12,32 @@ body {
     margin: 0;
     padding: 0;
 }
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    }
+    
+    :-webkit-scrollbar-button:start:decrement,
+    ::-webkit-scrollbar-button:end:increment {
+    height: 30px;
+    display: block;
+    background-color: transparent;
+    }
+    
+    ::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+    -webkit-border-radius: 6px;
+    }
+    
+    ::-webkit-scrollbar-thumb:vertical {
+    height: 50px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    -webkit-border-radius: 6px;
+    }
+
 /* arrows style */
 .arrow {
     width: 6px;
@@ -153,8 +179,8 @@ body {
 }
 
 .schedule__plan {
-    background-color: aqua;
-    line-height: 5;
+    display: flex;
+
 }
 
 .schedule__daysBox {
@@ -171,13 +197,13 @@ body {
 
 .schedule__box--days {
     height: 30px;
-    border-left: 1px solid black;
+    border-right: 1px solid black;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
 
 .schedule__staticBox > .schedule__box--days {
-    border-left: 0;
+    border-left: 0px;
 }
 
 .schedule__box--time {
@@ -186,10 +212,27 @@ body {
     border-top: 1px solid black;
 }
 
+.schedule__box--time:nth-child(odd) {
+    background-color: rgb(228, 226, 226);
+}
+
 .schedule__box--time:first-child {
     border-top: 0;
 }
 
 .schedule__box--time:last-child {
     border-bottom: 1px solid black;
+}
+
+/* boxes */
+.schedule__planBackground {
+    width: 140px;
+    height: 150px;
+    border-right: 1px solid black;
+    /* border-bottom: 1px solid black; */
+    border-top: 1px solid black;
+}
+
+.schedule__dayColumn {
+    position: relative;
 }
