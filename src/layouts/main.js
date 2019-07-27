@@ -1,9 +1,11 @@
 import React from "react";
+import Days from '../components/DaysInfo';
 
 const Main = () => {
     return (
-        <div>
-            Content
+        <div className="schedule">
+            <Days />
+            {/* others */}
         </div>
     );
 }
