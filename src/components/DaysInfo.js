@@ -1,22 +1,23 @@
 import React from "react";
+import RowDays from "./RowDays";
 
-const Days = () => {
+const DaysInfo = () => {
     return (
-        <div class="schedule__topInfo">
-            <div class="schedule__staticBox">
-                <div class="schedule__box schedule__box--days">Uhrzeit</div>
+        <div className="schedule__topInfo">
+            <div className="schedule__staticBox">
+                <RowDays val="Uhrzeit"/>
             </div>
-            <div class="schedule__daysBox">
-                <div class="schedule__box schedule__box--days">Mo 06.07.</div>
-                <div class="schedule__box schedule__box--days schedule__activeDay">Di 07.07.</div>
-                <div class="schedule__box schedule__box--days">Mi 08.07.</div>
-                <div class="schedule__box schedule__box--days">Do 09.07.</div>
-                <div class="schedule__box schedule__box--days">Fr 10.07.</div>
-                <div class="schedule__box schedule__box--days schedule__box--weekend">Sa 11.07.</div>
-                <div class="schedule__box schedule__box--days schedule__box--weekend">Sa 12.07.</div>
+            <div className="schedule__daysBox">
+                <RowDays val="Mo 06.07." />
+                <RowDays val="Di 07.07." activeDay="true"/>
+                <RowDays val="Mi 08.07." />
+                <RowDays val="Do 09.07." />
+                <RowDays val="Fr 10.07." />
+                <RowDays val="Sa 11.07." weekend="true" />
+                <RowDays val="Sa 12.07." weekend="true" />
             </div>
         </div>
     );
 }
 
-export default Days;
+export default DaysInfo;
