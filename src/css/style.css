@@ -396,7 +396,6 @@ div.schedule__box--time:nth-child(15) {
 }
 
 .schedule__mark {
-    visibility: hidden;
     font-size: 12px;
 }
 
