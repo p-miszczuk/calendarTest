@@ -14,13 +14,27 @@ body {
     padding: 0;
 }
 
+/* scrollbar */
+.schedule__boxes::-webkit-scrollbar {
+    width: 10px;
+}
+
+.schedule__boxes::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.schedule__boxes::-webkit-scrollbar-thumb {
+    background-color: #7d7c7c;
+    border-radius: 5px;
+}
+
 .calendar__wrapper {
     width: 820px;
-    height: 98vh;
+    height: 99vh;
     overflow: hidden;
     background-color: #e6e3df;
     position: fixed;
-    top: 5px;
+    top: 2px;
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
@@ -80,7 +94,6 @@ body {
 
 .calendar {
     width: 800px;
-    height: 95vh;
     background-color: white;
     overflow-y: hidden;
 }
@@ -175,7 +188,7 @@ body {
 /* time bar */
 .schedule__timeBar {
     position: absolute;
-    top: 630px;
+    top: 650px;
     width: 100%;
     z-index: 9999;
 }
@@ -358,7 +371,7 @@ div.schedule__box--time:nth-child(15) {
 }
 
 .schedule__task--45 {
-    height: 105px;
+    height: 104px;
 }
 
 .schedule__task--60 {
@@ -373,12 +386,14 @@ div.schedule__box--time:nth-child(15) {
 }
 
 .schedule__taskTime {
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .schedule__taskText {
     font-size: 11px;
     width: 80%;
+    overflow: hidden;
+    white-space: normal;
 }
 
 .schedule__iconSmile {
@@ -399,10 +414,6 @@ div.schedule__box--time:nth-child(15) {
     font-size: 12px;
 }
 
-.schedule__task--active {
-    visibility: visible;
-}
-
 .schedule__iconClose {
     display: block;
     opacity: 0;
@@ -413,16 +424,12 @@ div.schedule__box--time:nth-child(15) {
     width: 14px;
     height: 14px;
     text-align: center;
-    line-height: 8px;
+    line-height: 14px;
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
     cursor: pointer;
     -webkit-transition: opacity 0.1s;
     transition: opacity 0.1s;
-}
-
-.schedule__iconClose--inActive {
-    display: none;
 }
 
 .schedule__iconClose:hover {
@@ -433,18 +440,23 @@ div.schedule__box--time:nth-child(15) {
     background-color: #cdcdcd;
     display: flex;
     justify-content: center;
-    padding: 4px 0 5px 0;
+    padding: 3px 0 3px 0;
 }
 
 .schedule__button > button {
     border: 0;
     background-color: transparent;
     cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .schedule__button > button > span {
     display: block;
-    width: 10px;
+    width: 12px;
     height: 1px;
     background-color: white;
     margin-top: 1px;

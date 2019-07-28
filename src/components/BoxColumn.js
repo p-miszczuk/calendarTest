@@ -5,8 +5,8 @@ import TasksList from "./TasksList";
 const BoxColumn = props => {
     return (
         <div className="schedule__dayColumn">
-            <Grid />
-            <TasksList day={props.day}/>
+            <Grid day={props.day} />
+            <TasksList day={props.day} />
         </div>
     );
 }

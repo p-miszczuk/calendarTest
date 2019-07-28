@@ -1,23 +1,24 @@
 import React from "react";
+import GridItem from "./GridItem";
 
-const Grid = () => {
+const Grid = props => {
     return (
         <React.Fragment>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
-            <div className="schedule__box schedule__box--time"></div>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
+            <GridItem day={props.day}/>
         </React.Fragment>
     );
 }
