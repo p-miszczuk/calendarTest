@@ -15,7 +15,7 @@ body {
 }
 
 /* scrollbar */
-.schedule__boxes::-webkit-scrollbar {
+/* -webkit-scrollbar {
     width: 10px;
 }
 
@@ -26,7 +26,7 @@ body {
 .schedule__boxes::-webkit-scrollbar-thumb {
     background-color: #7d7c7c;
     border-radius: 5px;
-}
+} */
 
 .calendar__wrapper {
     width: 820px;
@@ -180,9 +180,15 @@ body {
 }
 
 /* schedule */
+.schedule__wrapper {
+    position: relative;
+}
+
 .schedule {
     overflow-x: hidden;
     position: relative;
+    overflow: auto;
+    height: 75vh;;
 }
 
 /* time bar */
@@ -234,21 +240,10 @@ body {
     line-height: 19px;
 }
 
-.schedule__topInfo {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-}
-
 .schedule__boxes {
     width: 100%;
     height: 76vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -263,13 +258,22 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-
+    position: absolute;
+    top: 30px;
+    left: 110px;
 }
 
 .schedule__daysBox {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
-    display: inline-flex;
+    display: flex;
+    width: 100%;
+    min-width: 900px;
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+    background-color: var(--white);
 }
 
 .schedule__activeDay {
@@ -291,8 +295,16 @@ body {
     border-bottom: 1px solid#f5f5f5;
 }
 
-.schedule__box--weekend {
+.schedule__box--free {
     color: lightgray;
+}
+
+.schedule__staticBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 99999;
+    background-color: var(--white);
 }
 
 .schedule__staticBox > .schedule__box--days {
@@ -460,4 +472,25 @@ div.schedule__box--time:nth-child(15) {
     height: 1px;
     background-color: white;
     margin-top: 1px;
+}
+
+.schedule__hour {
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    z-index: 9999;
+    background-color: var(--white);
+    width: 110px;
+}
+
+.static {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9999;
+    width: 110px;
+    height: 30px;
+    background-color: #cdcdcd !important;
+    text-align: center;
+    z-index: 99999;
 }

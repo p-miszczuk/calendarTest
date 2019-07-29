@@ -1,7 +1,6 @@
 import React from "react";
 
-const HeaderTitle = () => {
-    return (
+const HeaderTitle = () => (
         <div className="header__name">
             <h2>Terminplaner</h2>
             <div className="header__doubleArrows">
@@ -14,6 +13,5 @@ const HeaderTitle = () => {
             </div>
         </div>
     );
-}
 
 export default HeaderTitle;

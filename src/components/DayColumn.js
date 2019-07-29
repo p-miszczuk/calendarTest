@@ -1,18 +1,25 @@
 import React from "react";
 import BoxColumn from "./BoxColumn";
 
-const DayColumn = () => {
-    return (
-        <React.Fragment>
-            <BoxColumn day="06.07.2015" />
-            <BoxColumn day="07.07.2015" /> 
-            <BoxColumn day="08.07.2015" />
-            <BoxColumn day="09.07.2015" />
-            <BoxColumn day="10.07.2015" /> 
-            <BoxColumn day="11.07.2015" />
-            <BoxColumn day="12.07.2015" />
-        </React.Fragment>
-    );
-}
+class DayColumn extends React.Component {
 
-export default DayColumn;
+    state = {
+        days: [
+            {day: "06.07.2015"},
+            {day: "07.07.2015"},
+            {day: "08.07.2015"},
+            {day: "09.07.2015"},
+            {day: "10.07.2015"},
+            {day: "11.07.2015"},
+            {day: "12.07.2015"},
+        ]
+    }
+
+    render() {
+
+        return this.state.days.map(item => <BoxColumn day={item.day} />)
+        
+    }
+};
+
+export default DayColumn;    
