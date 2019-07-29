@@ -9,7 +9,7 @@ class Hours extends React.Component {
         return (
             <div className="schedule__hour">
                 {
-                    this.state.hours.map(hour => <Hour hour={`${hour}:00`} />)
+                    this.state.hours.map(hour => <Hour key={hour} hour={`${hour}:00`} />)
                 }
             </div>
         );
