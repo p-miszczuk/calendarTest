@@ -1,5 +1,6 @@
 import React from "react";
 import BoxColumn from "./BoxColumn";
+import AddForm from "./AddTaskForm";
 
 class DayColumn extends React.Component {
 
@@ -63,25 +64,28 @@ class DayColumn extends React.Component {
         //     data: stateClone
         // });
 
-        const newTask = document.createElement("div");
-        newTask.classList.add("newTask__add");
-        newTask.style.top = e.nativeEvent.offsetY + "px";
-        newTask.style.left = e.nativeEvent.offsetX + "px";
-        document.querySelector(".schedule__wrapper").appendChild(newTask);
+        
         console.log(e.nativeEvent.offsetY + " " + id);
 
     }
 
     render() { 
        
-        const tasks = this.state.data.map(item => (
-            <BoxColumn key={item.date} 
-                       day={item.date} 
-                       tasks={item.tasks} 
-                       click={(e,idItem) => this.handleTaskClick(e,idItem)} />
-        ))
+        
 
-        return tasks;
+        return (
+            <React.Fragment>
+            {
+                this.state.data.map(item => (
+                    <BoxColumn key={item.date} 
+                               day={item.date} 
+                               tasks={item.tasks} 
+                               click={(e,idItem) => this.handleTaskClick(e,idItem)} />
+                ))
+            }
+            <AddForm />
+            </React.Fragment>
+        );
     }
 };
 

@@ -500,22 +500,34 @@ div.schedule__box--time:nth-child(15) {
 
 .newTask {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    border-radius: 4px;
-    background-color: rgba(0,0,0,0.3);
-    z-index: 99999;
-}
-
-.newTask__add {
-    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 300px;
-    height: 200px;
+    width: 400px;
+    height: 300px;
     border-radius: 4px;
     background-color: var(--white);
+    padding: 10px;
+    overflow: hidden;
+    -webkit-box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+    box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+}
+
+.newTask__title {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #cdcdcd;
+    padding: 5px;
+    font-size: 15px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.newTask__title:focus {
+    outline: 0;
+    background-color: #d6ecff;
+}
+
+.newTask__hour {
+    width: 70px;
 }
