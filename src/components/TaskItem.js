@@ -1,7 +1,7 @@
 import React from "react";
 
 const Task = props => {
-    const { id,isTask,val,minute,time,title,day,top } = props;
+    const { id,val,minute,time,title,day,top } = props;
     const task =  (
         <div className={`schedule__task schedule__task--${minute} schedule__task--${val} `} style={{"top": top}}>
             <p className="schedule__taskTime">

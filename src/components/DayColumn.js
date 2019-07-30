@@ -6,10 +6,12 @@ import { isTSExpressionWithTypeArguments } from "@babel/types";
 class DayColumn extends React.Component {
 
     state = {
+        actualDate: "07.07.2015",
+        actualHour: "13:00",
         title: "",
-        hour: "12:00",
+        hour: "",
         minutes: "",
-        date: "2015-07-07",
+        date: "",
         checkMin: ["15","30","45","60"],
         displayForm: "none",
         posElem: "",
@@ -64,19 +66,6 @@ class DayColumn extends React.Component {
     };
 
     handleTaskClick = (e,id,day) => {
-        
-        // stateClone.forEach(item => {
-        //     if (item.date === date) {
-        //         item.tasks[idItem-1].isTask = true;
-        //         item.tasks[idItem-1].val = "before";
-        //         item.tasks[idItem-1].title = "Task 1";
-        //         item.tasks[idItem-1].time = "09:00 - 10:00";
-        //     }
-        // });
-        // console.log(stateClone);
-        // this.setState({
-        //     data: stateClone
-        // });
 
         const posY = e.nativeEvent.offsetY;
         const heightBox = e.target.offsetHeight;
@@ -100,14 +89,8 @@ class DayColumn extends React.Component {
         
         if (hour.toFixed(2).length === 4)
             hour = "0" + hour.toFixed(2);
-        // let stateClone = this.state.data;
-        // stateClone.map(item => {
-        //     if (item.date === day)
-        //         item.tasks[0].top = posElem;
-        //     return null
-        //  });
-        console.clear();
-        let date = day.split(".").join("-");
+        
+        let date = day.split(".").reverse().join("-");
        
         this.setState({
             date,
@@ -132,22 +115,50 @@ class DayColumn extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         
-        const {date, title, minutes, hour, checkMin } = this.state;
+        const {date, title, minutes, hour, checkMin, actualDate, actualHour, posElem } = this.state;
         
         if (date.length > 0 && title.length > 0 && minutes.length > 0 && hour.length > 0) {
-            const min = minutes.substr(0,2);console.log("jest");
+            const min = minutes.substr(0,2);
+            
             const check = checkMin.filter(item => item === min);
+            
             if (check.length > 0) {
-                let taskValues = [
-                    {
-                        date: date,
-                        title: title,
-                        minutes: minutes,
-                        hour: hour
-                    }
-                ]
+                let day = date.split("-").reverse().join(".");
+                let stateClone = this.state.data;
+    
+                console.clear();
+                let maxId = 0;
+                stateClone = stateClone.filter(item => item.date === day)
+                let tasks = stateClone[0].tasks.length;
+                
+                if (tasks === 0) 
+                    maxId = 1;
+                else {
+                    maxId = stateClone[0].tasks.map(item => item.id);
+                    maxId = maxId.sort().reverse()[0];
+                    maxId = Number(maxId) + 1;
+                } 
 
-                this.setState({displayForm: "none"});
+                if (maxId > 0) {
+                    
+                    let event = "";
+
+                    (day < actualDate && hour < actualHour) ? event = "after" : event = "before";
+                    let endTime = Number(hour) + Number("0."+min);
+                    let taskValues = {
+                        id: maxId.toString(),
+                        val: event,
+                        minute: min,
+                        title: title,
+                        time: `${hour}-${endTime}`,
+                        top: posElem
+                    }
+                    stateClone[0].tasks.push(taskValues);
+                   
+                    console.log(stateClone);                    
+                }
+
+                // this.setState({displayForm: "none"});
             }
             else {
                 alert("Check your minutes' field");
