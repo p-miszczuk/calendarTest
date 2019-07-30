@@ -12,11 +12,9 @@ const Main = () => {
                 <RowDays val="Uhrzeit"/>
             </div>
             <div className="schedule">
-      
                 <DaysInfo />
                 <Hours />
                 <PlanBox />
-                
             </div>
         </div>
     );

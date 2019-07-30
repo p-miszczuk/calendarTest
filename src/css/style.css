@@ -341,10 +341,13 @@ div.schedule__box--time:nth-child(15) {
     width: 109px;
     left: 0px;
     top: 0px;
+    height: 100%;
 }
 
 .schedule__task {
-    position: relative;
+    position: absolute;
+    left: 0px;
+    width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
