@@ -13,7 +13,7 @@ const Tasks = props => (
               title = {item.title}
               time={item.time}
               top={item.top}
-              click={(e,item,id) => props.click(e,item,id)} />
+              />
     ))
 )
 

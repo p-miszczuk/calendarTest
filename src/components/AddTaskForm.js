@@ -1,75 +1,14 @@
 import React from "react";
 
-class AddForm extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            hours: [],
-            display: "block",
-            title: "",
-            hour: "12:00",
-            minutes: "",
-            date: "2015-07-07",
-            checkMin: ["15","30","45","60"]
-        }
-    }
-
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-
-    handleChangeDate = (e) => {
-        this.setState({
-            date: e.target.value
-        })
-    }
-
-    handleSubmit = (e,message) => {
-        e.preventDefault();
-        
-        if (message === "close") 
-            this.setState({display: "none"})
-        else if (message === "send") {
-            const {date, title, minutes, hour, checkMin } = this.state;
-
-            if (date.length > 0 && title.length > 0 && minutes.length > 0 && hour.length > 0) {
-                const min = minutes.substr(0,2);
-                const check = checkMin.filter(item => item === min);
-                if (check.length > 0) {
-                    let taskValues = [
-                        {
-                            date: date,
-                            title: title,
-                            minutes: minutes,
-                            hour: hour
-                        }
-                    ]
-
-                    this.setState({display: "none"});
-                }
-                else {
-                    alert("Check your minutes' field");
-                }
-            }
-            else 
-                alert("Fill all fields");
-        }
-    }
-
-    render() {
-        return (
-            <div className="newTask" style={{"display": this.state.display}}>
-                <form action="" id="formSend">
+const AddForm = props => (
+            <div className="newTask" style={{"display": props.display}}>
+                <form action="" onSubmit={props.submit}>
                     <div>
                         <input type="text" 
                             placeholder="title" 
                             name="title" 
-                            value={this.state.title} 
-                            onChange={this.handleChange}
+                            value={props.title} 
+                            onChange={(e) => props.changeText(e)}
                             className="newTask__title"
                              />
                     </div>
@@ -79,10 +18,10 @@ class AddForm extends React.Component {
                             id="date" 
                             placeholder="title" 
                             name="data" 
-                            value={this.state.date}
+                            value={props.date}
                             min="2015-07-06" 
                             max="2015-07-10"
-                            onChange={this.handleChangeDate}
+                            onChange={(e) => props.changeDate(e)}
                             className="newTask__date" 
                             />
                     </div>
@@ -90,12 +29,12 @@ class AddForm extends React.Component {
                         <label htmlFor="hour"> hour: </label>
                         <input type="text" 
                                 list="hours" 
-                                value={this.state.hour} 
+                                value={props.hour} 
                                 id="hour" 
                                 autoComplete="off" 
                                 name="hour" 
                                 className="newTask__hour"
-                                onChange={this.handleChange}
+                                onChange={(e) => props.changeText(e)}
                                 />
                         <datalist id="hours">
                             <option value="12:00" />
@@ -107,12 +46,12 @@ class AddForm extends React.Component {
                         <label htmlFor="min"> time: </label>
                         <input type="text" 
                                 list="minutes" 
-                                value={this.state.minutes} 
+                                value={props.minutes} 
                                 id="min" 
                                 autoComplete="off" 
                                 name="minutes" 
                                 className="newTask__hour" 
-                                onChange={this.handleChange}
+                                onChange={(e) => props.changeText(e)}
                                 />
                         <datalist id="minutes">
                             <option value="15 min" />
@@ -122,13 +61,11 @@ class AddForm extends React.Component {
                         </datalist>
                     </div>
                     <div className="addTask__buttons">
-                        <button type="submit" onClick={e => this.handleSubmit(e,"send")}>Add</button> 
-                        <button type="button" onClick={e=> this.handleSubmit(e,"close")}>Close</button>
+                        <button type="submit">Add</button> 
+                        <button type="button" onClick={props.close}>Close</button>
                     </div>
                 </form>
             </div>
         );
-    }
-};
-
+    
 export default AddForm;

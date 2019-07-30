@@ -2,7 +2,7 @@ import React from "react";
 
 const Task = props => {
     const { id,isTask,val,minute,time,title,day,top } = props;
-    const task = isTask ? (
+    const task =  (
         <div className={`schedule__task schedule__task--${minute} schedule__task--${val} `} style={{"top": top}}>
             <p className="schedule__taskTime">
             <time dateTime={time}>{time}</time>
@@ -14,7 +14,7 @@ const Task = props => {
                 {val === "before" ? <span className="schedule__iconClose">+</span> : ""}
             </div>
         </div>
-    ) : <div onClick={(e) => props.click(e,day,id)} className={`schedule__free schedule__task--${minute}`}></div>;
+    );
 
     return task;
 }
