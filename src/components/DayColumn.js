@@ -6,7 +6,6 @@ import { isTSExpressionWithTypeArguments } from "@babel/types";
 class DayColumn extends React.Component {
 
     state = {
-        hours: [],
         title: "",
         hour: "12:00",
         minutes: "",
@@ -82,30 +81,40 @@ class DayColumn extends React.Component {
         const posY = e.nativeEvent.offsetY;
         const heightBox = e.target.offsetHeight;
         let posElem = this.state.posElem;
+        let hour = "";
 
         if (posY < heightBox/4) {
             posElem = 0 + heightBox * id +"px";
+            hour = 6.00 + id;
         } else if (posY < heightBox/2) {
             posElem = 35 + heightBox * id +"px";
+            hour = 6.15 + id;
         }
         else if (posY < heightBox/2 + heightBox/4) {
             posElem = 70 + heightBox * id +"px";
-        } else
+            hour = 6.30 + id;
+        } else {
             posElem = 105 + heightBox * id +"px";
-
-        // console.clear();
-       
+            hour = 6.45 + id;
+        }
+        
+        if (hour.toFixed(2).length === 4)
+            hour = "0" + hour.toFixed(2);
         // let stateClone = this.state.data;
         // stateClone.map(item => {
         //     if (item.date === day)
         //         item.tasks[0].top = posElem;
         //     return null
         //  });
-        // console.log(this.state.displayForm)
-         this.setState({
-             posElem,
-             displayForm: "block"
-         })
+        console.clear();
+        let date = day.split(".").join("-");
+       
+        this.setState({
+            date,
+            posElem,
+            hour,
+            displayForm: "block"
+        })
     }
 
     handleChange = (e) => {
