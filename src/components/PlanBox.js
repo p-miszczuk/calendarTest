@@ -7,5 +7,4 @@ const PlanBox = () => (
     </div>
 );
 
-
 export default PlanBox;

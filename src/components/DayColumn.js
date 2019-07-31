@@ -5,7 +5,7 @@ import AddForm from "./AddTaskForm";
 class DayColumn extends React.Component {
 
     state = {
-        actualDate: "07.07.2015",
+        activeDate: "07.07.2015",
         actualHour: "13:00",
         title: "",
         hour: "",
@@ -226,7 +226,8 @@ class DayColumn extends React.Component {
             {
                 this.state.data.map(item => (
                     <BoxColumn key={item.date} 
-                               day={item.date} 
+                               day={item.date}
+                               activeDate={this.state.activeDate} 
                                tasks={item.tasks} 
                                click={(e,idItem,day) => this.handleTaskClick(e,idItem,day)} />
                 ))

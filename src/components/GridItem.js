@@ -1,9 +1,21 @@
 import React from "react";
+import classNames from "classnames/bind";
 
-const GridItem = props=> (
+const GridItem = props=> {
 
-<div onClick={(e) => props.click(e,props.elem,props.day)} 
-                    className={`schedule__box schedule__box--time 
-                    ${props.day === "07.07.2015" ? "schedule__activeDay" : ""}`}></div>);
+    const activeDate = props.day === props.activeDate;
+    
+    const box = classNames({
+        "schedule__box": true,
+        "schedule__box--time": true,
+        "schedule__activeDay": activeDate
+    })
+
+return (
+    <div onClick={(e) => props.click(e,props.elem,props.day)} 
+         className={box}>
+    </div>
+    )
+};
 
 export default GridItem;

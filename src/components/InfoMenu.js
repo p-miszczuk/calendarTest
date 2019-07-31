@@ -18,7 +18,7 @@ class DaysInfo extends React.Component {
 
     render() {
         const day = this.state.days.map(item => (
-            <RowDays key={item.day} val={item.day} date={item.date} activeDay={this.state.actualDate} />
+            <RowDays key={item.day} val={item.day} date={item.date} activeDay={this.state.actualDate} free={item.free} />
         ));
 
         return (
