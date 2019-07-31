@@ -360,12 +360,12 @@ div.schedule__box--time:nth-child(15) {
     border: 1px solid white;
 }
 
-.schedule__free {
+/* .schedule__free {
     background-color: antiquewhite;
     margin: 1px 0 1px 0;
-}
+} */
 
-.schedule__task--after {
+/* .schedule__task--after {
     background-color: #d6ecff;
 }
 
@@ -375,9 +375,9 @@ div.schedule__box--time:nth-child(15) {
 
 .schedule__task--now {
     background-color: #fdd466;
-}
+} */
 
-.schedule__task--15 {
+/* .schedule__task--15 {
     height: 34px;
 }
 
@@ -391,7 +391,7 @@ div.schedule__box--time:nth-child(15) {
 
 .schedule__task--60 {
     height: 139px;
-}
+} */
 
 /* inside task */
 .schedule__additionalInfo {
@@ -500,6 +500,7 @@ div.schedule__box--time:nth-child(15) {
 
 .newTask {
     position: fixed;
+    display: none;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -511,6 +512,10 @@ div.schedule__box--time:nth-child(15) {
     overflow: hidden;
     -webkit-box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
     box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+}
+
+.newTask--display {
+    display: block;
 }
 
 .newTask__title {
@@ -566,3 +571,8 @@ div.schedule__box--time:nth-child(15) {
 .addTask__buttons > button:last-child {
     border: 1px solid rgb(230, 5, 5);
 } */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/

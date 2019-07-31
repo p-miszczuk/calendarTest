@@ -5,19 +5,17 @@ import Hours from "../components/Hours";
 import PlanBox from "../components/PlanBox";
 
 
-const Main = () => {
-    return (
-        <div className="schedule__wrapper">
-            <div className="schedule__staticBox">
-                <RowDays val="Uhrzeit"/>
-            </div>
-            <div className="schedule">
-                <DaysInfo />
-                <Hours />
-                <PlanBox />
-            </div>
+const Main = () => (
+    <div className="schedule__wrapper">
+        <div className="schedule__staticBox">
+            <RowDays val="Uhrzeit"/>
         </div>
-    );
-}
+        <div className="schedule">
+            <DaysInfo />
+            <Hours />
+            <PlanBox />
+        </div>
+    </div>
+)
 
 export default Main;

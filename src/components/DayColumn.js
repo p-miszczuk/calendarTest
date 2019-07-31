@@ -12,8 +12,8 @@ class DayColumn extends React.Component {
         minutes: "",
         date: "",
         checkMin: ["15","30","45","60"],
-        displayForm: "none",
-        hours: null,
+        displayForm: false,
+        hours: [],
         data: [
             {
                 date: "06.07.2015",
@@ -74,7 +74,6 @@ class DayColumn extends React.Component {
 
         for (let i=0; i<loop; i++)
         {   
-            // console.log((hour+jump).toFixed(2) + " " + (pos));
             if (hour.toFixed(2).length === 4)
                 hourSave = "0" + (hour+jump).toFixed(2);
             else 
@@ -113,7 +112,7 @@ class DayColumn extends React.Component {
         this.setState({
             date,
             hour,
-            displayForm: "block"
+            displayForm: true
         })
     }
 
@@ -192,7 +191,13 @@ class DayColumn extends React.Component {
                                        
                 }
 
-                this.setState({displayForm: "none"});
+                this.setState({
+                    displayForm: false,
+                    title: "",
+                    hour: "",
+                    minutes: "",
+                    date: "",
+                });
             }
             else {
                 alert("Check your minutes' field");
@@ -204,7 +209,7 @@ class DayColumn extends React.Component {
 
     handleClose = () => {
         this.setState({
-            displayForm: "none"
+            displayForm: false
         })
     }
 
@@ -234,7 +239,8 @@ class DayColumn extends React.Component {
                     title={this.state.title} 
                     hour={this.state.hour}
                     minutes={this.state.minutes}
-                    date={this.state.date} />
+                    date={this.state.date}
+                    hours={this.state.hours} />
             </React.Fragment>
         );
     }

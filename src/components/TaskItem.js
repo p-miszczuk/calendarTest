@@ -1,16 +1,43 @@
 import React from "react";
+import classNames from 'classnames/bind';
 
 const Task = props => {
     const { id,val,minute,time,title,day,top } = props;
+
+    let height = "";
+    let heightBox = 34; //15 minutes box hight
+    minute === 15 ? height = 34+"px" : height = heightBox+35*minute/15-1; //others box height (69,104,139 ...)
+
+    let event = "";
+
+    if (val === "after") 
+        event = "#d6ecff";
+    else if (val === "before")
+        event = "#93d7fb";
+    else if (val === "now")
+        event = "#fdd466";
+
+    const styles = {
+        top: top,
+        height: height,
+        backgroundColor: event
+    }
+
+    const className = classNames({
+        schedule__iconSmile: true,
+        iconhelp1: val === "after",
+        iconhelp2: val !== "after"
+    })
+    
     const task =  (
-        <div className={`schedule__task schedule__task--${minute} schedule__task--${val} `} style={{"top": top}}>
+        <div className={`schedule__task`} style={styles} >
             <p className="schedule__taskTime">
             <time dateTime={time}>{time}</time>
             </p>
             <p className="schedule__taskText">{title}</p>
             <div className="schedule__additionalInfo">
                 {val === "now" ? <span className="schedule__mark">!</span> : ""}
-                {(val === "after" || val === "now") ? <span className={`schedule__iconSmile ${val === "after" ? "iconhelp1" : "iconhelp2"}`} role="img" aria-label="smile">&#128578;</span> : ""}
+                {(val === "after" || val === "now") ? <span className={className} role="img" aria-label="smile">&#128578;</span> : ""}
                 {val === "before" ? <span className="schedule__iconClose">+</span> : ""}
             </div>
         </div>

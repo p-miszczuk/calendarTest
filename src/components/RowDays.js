@@ -1,8 +1,22 @@
 import React from "react";
+import classNames from "classnames/bind"
 
-const RowDays = props => (
-    <div className={`schedule__box schedule__box--days ${props.activeDay ? "schedule__activeDay" : "" }
-        ${props.free ? "schedule__box--free" : ""}`}>{props.val}</div>
-);
+const RowDays = props => {
+
+    const activeDay = props.date === props.activeDay && props.date !== undefined;
+   
+    const box = classNames({
+        "schedule__box": true,
+        "schedule__box--days": true,
+        "schedule__activeDay" : activeDay,
+        "schedule__box--free" : false
+    })
+
+    return(
+        <div className={box}>{props.val}</div>
+    )
+}
+    
+
 
 export default RowDays;
