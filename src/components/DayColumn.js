@@ -13,7 +13,6 @@ class DayColumn extends React.Component {
         date: "",
         checkMin: ["15","30","45","60"],
         displayForm: "none",
-        posElem: "",
         hours: null,
         data: [
             {
@@ -82,7 +81,7 @@ class DayColumn extends React.Component {
                 hourSave = (hour+jump).toFixed(2)
             
             arr.push({hour: hourSave, pos})
-            if (jump >= 0.44) {jump = 0; hour +=1} else jump += 0.15;
+            if (jump > 0.30) {jump = 0; hour +=1} else jump += 0.15;
             pos += 35;
         }
             
@@ -93,21 +92,16 @@ class DayColumn extends React.Component {
 
         const posY = e.nativeEvent.offsetY;
         const heightBox = e.target.offsetHeight;
-        let posElem = this.state.posElem;
         let hour = "";
 
         if (posY < heightBox/4) {
-            posElem = 0 + heightBox * id +"px";
             hour = 6.00 + id;
         } else if (posY < heightBox/2) {
-            posElem = 35 + heightBox * id +"px";
             hour = 6.15 + id;
         }
         else if (posY < heightBox/2 + heightBox/4) {
-            posElem = 70 + heightBox * id +"px";
             hour = 6.30 + id;
         } else {
-            posElem = 105 + heightBox * id +"px";
             hour = 6.45 + id;
         }
         
@@ -118,7 +112,6 @@ class DayColumn extends React.Component {
        
         this.setState({
             date,
-            posElem,
             hour,
             displayForm: "block"
         })
@@ -136,10 +129,19 @@ class DayColumn extends React.Component {
         })
     }
 
+    addTime = (start, time) => {
+        let now = new Date();
+        now.setHours(start.split(".")[0]);
+        now.setMinutes(start.split(".")[1]);
+        now.setHours(now.getHours()+parseInt(time.split(".")[0]));
+        now.setMinutes(now.getMinutes()+parseInt(time.split(".")[1]));
+        return now.getHours() + "." + now.getMinutes();
+    };
+
     handleSubmit = (e) => {
         e.preventDefault();
         
-        const {date, title, minutes, hour, checkMin, actualDate, actualHour, posElem } = this.state;
+        const {date, title, minutes, hour, checkMin, actualDate, actualHour } = this.state;
         
         if (date.length > 0 && title.length > 0 && minutes.length > 0 && hour.length > 0) {
             
@@ -172,22 +174,25 @@ class DayColumn extends React.Component {
                     else
                         event = "before";
 
-                    let endTime = Number(hour) + Number("0."+min);
+                    const pos = this.state.hours.filter(item => item.hour === hour);
 
+                    let time = Number(this.addTime(hour,`0.${min}`));
+                    time.toFixed(2).length >= 4 ? time = `0${time.toFixed(2)}` : time = time.toFixed(2);
+                   
                     const taskValues = {
                         id: maxId.toString(),
                         val: event,
                         minute: min,
                         title: title,
-                        time: `${hour}-${endTime}`,
-                        top: posElem
+                        time: `${hour} - ${time}`,
+                        top: `${pos[0].pos}px`
                     }
 
                     stateClone[0].tasks.push(taskValues);
                                        
                 }
 
-                // this.setState({displayForm: "none"});
+                this.setState({displayForm: "none"});
             }
             else {
                 alert("Check your minutes' field");
@@ -211,7 +216,6 @@ class DayColumn extends React.Component {
     }
 
     render() { 
-        console.log(this.state.hours)
        return (
             <React.Fragment>
             {
