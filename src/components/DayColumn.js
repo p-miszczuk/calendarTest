@@ -9,7 +9,7 @@ class DayColumn extends React.Component {
         actualHour: "13:00",
         title: "",
         hour: "",
-        minutes: "",
+        minutes: "15 min",
         date: "",
         checkMin: ["15","30","45","60"],
         displayForm: false,
@@ -104,7 +104,7 @@ class DayColumn extends React.Component {
             hour = 6.45 + id;
         }
         
-        if (hour.toFixed(2).length === 4)
+        if (hour.toFixed(2).length <= 4)
             hour = "0" + hour.toFixed(2);
         
         let date = day.split(".").reverse().join("-");
@@ -140,8 +140,8 @@ class DayColumn extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         
-        const {date, title, minutes, hour, checkMin, actualDate, actualHour } = this.state;
-        
+        const {date, title, minutes, hour, checkMin, activeDate, actualHour } = this.state;
+        console.log(date)
         if (date.length > 0 && title.length > 0 && minutes.length > 0 && hour.length > 0) {
             
             const min = minutes.substr(0,2);
@@ -168,7 +168,7 @@ class DayColumn extends React.Component {
                     
                     let event = "";
 
-                    if (day <= actualDate ) 
+                    if (day <= activeDate ) 
                         hour < actualHour ? event = "after" : event = "before";
                     else
                         event = "before";
@@ -176,8 +176,8 @@ class DayColumn extends React.Component {
                     const pos = this.state.hours.filter(item => item.hour === hour);
 
                     let time = Number(this.addTime(hour,`0.${min}`));
-                    time.toFixed(2).length >= 4 ? time = `0${time.toFixed(2)}` : time = time.toFixed(2);
-                   
+                    time.toFixed(2).length <= 4 ? time = `0${time.toFixed(2)}` : time = time.toFixed(2);
+                    
                     const taskValues = {
                         id: maxId.toString(),
                         val: event,
@@ -186,22 +186,24 @@ class DayColumn extends React.Component {
                         time: `${hour} - ${time}`,
                         top: `${pos[0].pos}px`
                     }
+                    
+                    const obj = {
+                        date: day,
+                        tasks: stateClone[0].tasks.concat(taskValues)
+                    }
 
-                    stateClone[0].tasks.push(taskValues);
-                                       
+                    this.setState({
+                        displayForm: false,
+                        title: "",
+                        hour: "",
+                        minutes: "15 min",
+                        date: "",
+                        data: this.state.data.map(item => item.date === day ? obj : item)
+                    });                
                 }
-
-                this.setState({
-                    displayForm: false,
-                    title: "",
-                    hour: "",
-                    minutes: "",
-                    date: "",
-                });
             }
-            else {
+            else 
                 alert("Check your minutes' field");
-            }
         }
         else 
             alert("Fill all fields");
@@ -209,7 +211,11 @@ class DayColumn extends React.Component {
 
     handleClose = () => {
         this.setState({
-            displayForm: false
+            displayForm: false,
+            title: "",
+            hour: "",
+            minutes: "15 min",
+            date: "",
         })
     }
 
@@ -221,6 +227,7 @@ class DayColumn extends React.Component {
     }
 
     render() { 
+        console.log(this.state.minutes)
        return (
             <React.Fragment>
             {

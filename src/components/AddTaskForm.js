@@ -6,7 +6,7 @@ const AddForm = props => {
         'newTask': true,
         'newTask--display': props.display
     });
-    
+    console.log(props.date + " " + props.minutes)
     return (
     <div className={task}>
         <form action="" onSubmit={props.submit}>
@@ -34,36 +34,19 @@ const AddForm = props => {
             </div>
             <div>
                 <label htmlFor="hour"> hour: </label>
-                <input type="text" 
-                        list="hours" 
-                        value={props.hour} 
-                        id="hour" 
-                        autoComplete="off" 
-                        name="hour" 
-                        className="newTask__hour"
-                        onChange={(e) => props.changeText(e)}
-                        />
-                <datalist id="hours">
+                <select name="hour" onChange={(e) => props.changeText(e)} className="newTask__hour" value={props.hour} 
+                        id="hour" >
                     {
-                        props.hours.map(item => <option key={item.hour} value={item.hour} />)
+                        props.hours.map(item => <option key={item.hour} value={item.hour} >{item.hour}</option>)
                     }
-                </datalist>
+                </select>
                 <label htmlFor="min"> time: </label>
-                <input type="text" 
-                        list="minutes" 
-                        value={props.minutes} 
-                        id="min" 
-                        autoComplete="off" 
-                        name="minutes" 
-                        className="newTask__hour" 
-                        onChange={(e) => props.changeText(e)}
-                        />
-                <datalist id="minutes">
-                    <option value="15 min" />
-                    <option value="30 min" />
-                    <option value="45 min" />
-                    <option value="60 min" />
-                </datalist>
+                <select id="min" value={props.minutes} name="minutes" className="newTask__hour" onChange={(e) => props.changeText(e)}>
+                    <option value="15 min" >15 min</option>
+                    <option value="30 min" >30 min</option>
+                    <option value="45 min" >45 min</option>
+                    <option value="60 min" >60 min</option>
+                </select>
             </div>
             <div className="addTask__buttons">
                 <button type="submit">Add</button> 
