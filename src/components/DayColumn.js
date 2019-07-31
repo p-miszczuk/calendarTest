@@ -1,7 +1,6 @@
 import React from "react";
 import BoxColumn from "./BoxColumn";
 import AddForm from "./AddTaskForm";
-import { isTSExpressionWithTypeArguments } from "@babel/types";
 
 class DayColumn extends React.Component {
 
@@ -15,6 +14,7 @@ class DayColumn extends React.Component {
         checkMin: ["15","30","45","60"],
         displayForm: "none",
         posElem: "",
+        hours: null,
         data: [
             {
                 date: "06.07.2015",
@@ -64,6 +64,30 @@ class DayColumn extends React.Component {
 
         ]
     };
+
+    createHoures = () => {
+        let pos = 0;
+        let hour = 6;
+        let hourSave = "";
+        let jump = 0;
+        let arr = [];
+        const loop = 56;
+
+        for (let i=0; i<loop; i++)
+        {   
+            // console.log((hour+jump).toFixed(2) + " " + (pos));
+            if (hour.toFixed(2).length === 4)
+                hourSave = "0" + (hour+jump).toFixed(2);
+            else 
+                hourSave = (hour+jump).toFixed(2)
+            
+            arr.push({hour: hourSave, pos})
+            if (jump >= 0.44) {jump = 0; hour +=1} else jump += 0.15;
+            pos += 35;
+        }
+            
+        return arr;
+    }
 
     handleTaskClick = (e,id,day) => {
 
@@ -118,15 +142,15 @@ class DayColumn extends React.Component {
         const {date, title, minutes, hour, checkMin, actualDate, actualHour, posElem } = this.state;
         
         if (date.length > 0 && title.length > 0 && minutes.length > 0 && hour.length > 0) {
-            const min = minutes.substr(0,2);
             
+            const min = minutes.substr(0,2);
             const check = checkMin.filter(item => item === min);
             
             if (check.length > 0) {
-                let day = date.split("-").reverse().join(".");
+                
+                const day = date.split("-").reverse().join(".");
                 let stateClone = this.state.data;
     
-                console.clear();
                 let maxId = 0;
                 stateClone = stateClone.filter(item => item.date === day)
                 let tasks = stateClone[0].tasks.length;
@@ -143,9 +167,14 @@ class DayColumn extends React.Component {
                     
                     let event = "";
 
-                    (day < actualDate && hour < actualHour) ? event = "after" : event = "before";
+                    if (day <= actualDate ) 
+                        hour < actualHour ? event = "after" : event = "before";
+                    else
+                        event = "before";
+
                     let endTime = Number(hour) + Number("0."+min);
-                    let taskValues = {
+
+                    const taskValues = {
                         id: maxId.toString(),
                         val: event,
                         minute: min,
@@ -153,9 +182,9 @@ class DayColumn extends React.Component {
                         time: `${hour}-${endTime}`,
                         top: posElem
                     }
+
                     stateClone[0].tasks.push(taskValues);
-                   
-                    console.log(stateClone);                    
+                                       
                 }
 
                 // this.setState({displayForm: "none"});
@@ -174,7 +203,15 @@ class DayColumn extends React.Component {
         })
     }
 
+    componentDidMount() {
+        const hours = this.createHoures();
+        this.setState({
+            hours
+        })
+    }
+
     render() { 
+        console.log(this.state.hours)
        return (
             <React.Fragment>
             {

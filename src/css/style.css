@@ -552,14 +552,17 @@ div.schedule__box--time:nth-child(15) {
     height: 28px;
     border: 0;
     cursor: pointer;
-    color: white;
+    color: blue;
+    font-weight: bold;
     border-radius: 4px;
+    background-color: var(--white);
+    border: 1px solid #222;
 }
 
-.addTask__buttons > button:first-child {
-    background-color: green;
+/* .addTask__buttons > button:first-child {
+    border: 1px solid green;
 }
 
 .addTask__buttons > button:last-child {
-    background-color: rgb(230, 5, 5);
-}
+    border: 1px solid rgb(230, 5, 5);
+} */
