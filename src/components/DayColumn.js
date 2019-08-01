@@ -70,7 +70,7 @@ class DayColumn extends React.Component {
         let hourSave = "";
         let jump = 0;
         let arr = [];
-        const loop = 56;
+        const loop = 61;
 
         for (let i=0; i<loop; i++)
         {   
@@ -254,19 +254,14 @@ class DayColumn extends React.Component {
                 if (e.pageX-e.target.offsetWidth/2  >= left - 10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + column.offsetWidth + 10 && 
                     e.pageY-e.target.offsetHeight/2 >= top - 5 && e.pageY-e.target.offsetHeight/2 + e.target.offsetHeight-5 < top + column.offsetHeight + 5)
                     {
-                        column.style.border = "1px solid yellow";
                         this.top = e.target.offsetTop - top;
-                        console.log(this.top)
                     }
-                else {
-                    column.style.border = "none";
-                }
             });
         }
     }
 
     handleMouseUp = e => {
-        // document.body.removeChild(e.target);
+        document.body.removeChild(e.target);
 
         const div = document.querySelectorAll(".gridBox");
         let column = 0, left = 0, top = 0;
@@ -275,11 +270,16 @@ class DayColumn extends React.Component {
             column = item.getBoundingClientRect();
             top = Math.ceil(column.top);
             left = Math.ceil(column.left);
-            
+            // console.log(left-10 + " " + (left + item.offsetWidth + 10))
+            // console.log(e.pageX-e.target.offsetWidth/2 + " " + (e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth))
             if (e.pageX-e.target.offsetWidth/2 > left -10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + item.offsetWidth + 10) {
-                const pos = this.state.hours.find(item => item.pos > this.top);
-                console.log(e.target.offsetHeight)
-                console.log(pos)
+                
+                const drop = this.state.hours.find(item => item.pos > this.top);
+                console.log(drop)
+                e.target.style.position = "absolute";
+                e.target.style.top = drop.pos + "px";
+                e.target.style.left = 0+"px";
+                item.appendChild(e.target);
             }
         })
     }
