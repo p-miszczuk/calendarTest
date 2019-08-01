@@ -7,9 +7,9 @@ const BoxColumn = props => (
     <div className="schedule__dayColumn">
         
         <Grid day={props.day} 
-              activeDate={props.activeDate} 
+              activeDate={props.activeDate}
               click={(e,idItem,day) => props.click(e,idItem,day)} />
-        <TasksList task={props.tasks} />
+        <TasksList task={props.tasks} down={props.down} />
 
     </div>
 );

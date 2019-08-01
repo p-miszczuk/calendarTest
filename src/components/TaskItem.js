@@ -30,16 +30,17 @@ const Task = props => {
     })
     
     const task =  (
-        <div className={`schedule__task`} style={styles} >
-            <p className="schedule__taskTime">
-            <time dateTime={time}>{time}</time>
+        <div className={`schedule__task`} style={styles} onMouseDown={props.down}>
+            {/* <p className="schedule__taskTime" onM>
+            <time dateTime={time} >{time}</time>
             </p>
-            <p className="schedule__taskText">{title}</p>
-            <div className="schedule__additionalInfo">
+            <p className="schedule__taskText" onMouseDownCapture="false">{title}</p>
+            <div className="schedule__additionalInfo" onMouseDownCapture="false" >
                 {val === "now" ? <span className="schedule__mark">!</span> : ""}
-                {(val === "after" || val === "now") ? <span className={className} role="img" aria-label="smile">&#128578;</span> : ""}
+                {(val === "after" || val === "now") ? <span className={className} role="img" aria-label="smile" onMouseDownCapture="false">&#128578;</span> : ""}
                 {val === "before" ? <span className="schedule__iconClose">+</span> : ""}
-            </div>
+            </div> */}
+            asdasd
         </div>
     );
 

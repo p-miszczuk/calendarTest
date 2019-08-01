@@ -226,6 +226,15 @@ class DayColumn extends React.Component {
         })
     }
 
+    handleMosueDown = e => {
+        
+        e.target.style.position = "fixed";
+        e.target.style.left = e.pageX-e.target.offsetWidth/2+"px";
+        e.target.style.top = e.pageY-e.target.offsetHeight/2+"px";
+        document.body.append(e.target);
+        
+    }
+
     render() { 
         console.log(this.state.minutes)
        return (
@@ -235,7 +244,8 @@ class DayColumn extends React.Component {
                     <BoxColumn key={item.date} 
                                day={item.date}
                                activeDate={this.state.activeDate} 
-                               tasks={item.tasks} 
+                               tasks={item.tasks}
+                               down={this.handleMosueDown} 
                                click={(e,idItem,day) => this.handleTaskClick(e,idItem,day)} />
                 ))
             }

@@ -13,6 +13,7 @@ const Tasks = props => (
               title = {item.title}
               time={item.time}
               top={item.top}
+              down={props.down} 
               />
     ))
 )
