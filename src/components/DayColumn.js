@@ -246,23 +246,42 @@ class DayColumn extends React.Component {
             let columns = document.querySelectorAll(".gridBox");
             let box = null, top = null, left = null;
             
-            columns.forEach(item => {
-                box = item.getBoundingClientRect();
+            columns.forEach(column => {
+                box = column.getBoundingClientRect();
                 top = Math.ceil(box.top);
                 left = Math.ceil(box.left);
                 
-                if (e.pageX-e.target.offsetWidth/2  >= left - 10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + item.offsetWidth + 10 && 
-                    e.pageY-e.target.offsetHeight/2 >= top - 5 && e.pageY-e.target.offsetHeight/2 + e.target.offsetHeight-5 < top + item.offsetHeight + 5)
+                if (e.pageX-e.target.offsetWidth/2  >= left - 10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + column.offsetWidth + 10 && 
+                    e.pageY-e.target.offsetHeight/2 >= top - 5 && e.pageY-e.target.offsetHeight/2 + e.target.offsetHeight-5 < top + column.offsetHeight + 5)
                     {
-                        item.style.border = "1px solid yellow";
-                        this.top = e.target.offsetTop;
+                        column.style.border = "1px solid yellow";
+                        this.top = e.target.offsetTop - top;
                         console.log(this.top)
                     }
                 else {
-                    item.style.border = "none";
+                    column.style.border = "none";
                 }
             });
         }
+    }
+
+    handleMouseUp = e => {
+        // document.body.removeChild(e.target);
+
+        const div = document.querySelectorAll(".gridBox");
+        let column = 0, left = 0, top = 0;
+
+        div.forEach(item => {
+            column = item.getBoundingClientRect();
+            top = Math.ceil(column.top);
+            left = Math.ceil(column.left);
+            
+            if (e.pageX-e.target.offsetWidth/2 > left -10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + item.offsetWidth + 10) {
+                const pos = this.state.hours.find(item => item.pos > this.top);
+                console.log(e.target.offsetHeight)
+                console.log(pos)
+            }
+        })
     }
 
     render() { 
@@ -277,6 +296,7 @@ class DayColumn extends React.Component {
                                tasks={item.tasks}
                                down={this.handleMosueDown}
                                move={this.handleMouseMove}
+                               up={this.handleMouseUp}
                                click={(e,idItem,day) => this.handleTaskClick(e,idItem,day)} />
                 ))
             }

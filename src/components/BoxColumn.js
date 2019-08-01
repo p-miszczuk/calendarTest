@@ -11,7 +11,8 @@ const BoxColumn = props => (
               click={(e,idItem,day) => props.click(e,idItem,day)} />
         <TasksList task={props.tasks} 
                    down={props.down}
-                   move={props.move} />
+                   move={props.move}
+                   up={props.up} />
 
     </div>
 );

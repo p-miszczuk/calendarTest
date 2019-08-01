@@ -15,6 +15,7 @@ const Tasks = props => (
               top={item.top}
               down={props.down}
               move={props.move}
+              up={props.up}
               />
     ))
 )

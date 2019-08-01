@@ -30,7 +30,7 @@ const Task = props => {
     })
     
     const task =  (
-        <div className={`schedule__task`} style={styles} onMouseDown={props.down} onMouseMove={props.move}>
+        <div className={`schedule__task`} style={styles} onMouseDown={props.down} onMouseMove={props.move} onMouseUp={props.up}>
             {/* <p className="schedule__taskTime" onM>
             <time dateTime={time} >{time}</time>
             </p>
