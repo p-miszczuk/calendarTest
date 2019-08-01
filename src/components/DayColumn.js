@@ -227,24 +227,36 @@ class DayColumn extends React.Component {
     }
 
     top = 0;
+    prevTop = 0;
+    prevColumn = null;
 
     handleMosueDown = e => {
+        e.preventDefault();
+
+        this.prevTop = e.target.style.top;
+        this.prevColumn = e.target.parentElement;
         
         e.target.style.position = "fixed";
         e.target.style.left = e.pageX-e.target.offsetWidth/2+"px";
         e.target.style.top = e.pageY-e.target.offsetHeight/2+"px";
+
         document.body.append(e.target);
         
     }
 
     handleMouseMove = e => {
+        e.preventDefault();
+        
         if (e.target.style.position === "fixed") {
             e.target.style.left = e.pageX-e.target.offsetWidth/2+"px";
             e.target.style.top = e.pageY-e.target.offsetHeight/2+"px";
 
             // get wrappers
             let columns = document.querySelectorAll(".gridBox");
-            let box = null, top = null, left = null;
+           
+            let box = null, 
+                top = null, 
+                left = null;
             
             columns.forEach(column => {
                 box = column.getBoundingClientRect();
@@ -261,31 +273,38 @@ class DayColumn extends React.Component {
     }
 
     handleMouseUp = e => {
+        e.preventDefault();
         document.body.removeChild(e.target);
 
-        const div = document.querySelectorAll(".gridBox");
+        const columns = document.querySelectorAll(".gridBox");
         let column = 0, left = 0, top = 0;
 
-        div.forEach(item => {
+        const action = [...columns].find(item => {
             column = item.getBoundingClientRect();
-            top = Math.ceil(column.top);
             left = Math.ceil(column.left);
-            // console.log(left-10 + " " + (left + item.offsetWidth + 10))
-            // console.log(e.pageX-e.target.offsetWidth/2 + " " + (e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth))
-            if (e.pageX-e.target.offsetWidth/2 > left -10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + item.offsetWidth + 10) {
-                
-                const drop = this.state.hours.find(item => item.pos > this.top);
-                console.log(drop)
-                e.target.style.position = "absolute";
-                e.target.style.top = drop.pos + "px";
-                e.target.style.left = 0+"px";
-                item.appendChild(e.target);
+            top = Math.ceil(column.top);
+            
+            if (e.pageX-e.target.offsetWidth/2 > left -10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + item.offsetWidth + 10
+                && e.pageY-e.target.offsetHeight/2 >= top - 5 && e.pageY-e.target.offsetHeight/2 + e.target.offsetHeight-5 < top + item.offsetHeight + 5) {
+                return item;
             }
-        })
+
+            return false;  
+        });
+
+        typeof action === "object" ? this.setColumn(e, this.top, action) 
+                                   : this.setColumn(e, Number(this.prevTop.slice(0,this.prevTop.length-2)), this.prevColumn);
+    }
+
+    setColumn = (e, topPos, target) => {
+        const drop = this.state.hours.find(item => item.pos >= topPos);
+        e.target.style.position = "absolute";
+        e.target.style.top = drop.pos + "px";
+        e.target.style.left = 0+"px";
+        target.appendChild(e.target);
     }
 
     render() { 
-        console.log(this.state.minutes)
        return (
             <React.Fragment>
             {
