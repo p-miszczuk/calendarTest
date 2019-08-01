@@ -4,7 +4,7 @@ import TasksList from "./TasksList";
 
 const BoxColumn = props => (
     
-    <div className="schedule__dayColumn">
+    <div className="schedule__dayColumn gridBox">
         
         <Grid day={props.day} 
               activeDate={props.activeDate}

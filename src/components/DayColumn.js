@@ -226,6 +226,8 @@ class DayColumn extends React.Component {
         })
     }
 
+    top = 0;
+
     handleMosueDown = e => {
         
         e.target.style.position = "fixed";
@@ -239,6 +241,27 @@ class DayColumn extends React.Component {
         if (e.target.style.position === "fixed") {
             e.target.style.left = e.pageX-e.target.offsetWidth/2+"px";
             e.target.style.top = e.pageY-e.target.offsetHeight/2+"px";
+
+            // get wrappers
+            let columns = document.querySelectorAll(".gridBox");
+            let box = null, top = null, left = null;
+            
+            columns.forEach(item => {
+                box = item.getBoundingClientRect();
+                top = Math.ceil(box.top);
+                left = Math.ceil(box.left);
+                
+                if (e.pageX-e.target.offsetWidth/2  >= left - 10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + item.offsetWidth + 10 && 
+                    e.pageY-e.target.offsetHeight/2 >= top - 5 && e.pageY-e.target.offsetHeight/2 + e.target.offsetHeight-5 < top + item.offsetHeight + 5)
+                    {
+                        item.style.border = "1px solid yellow";
+                        this.top = e.target.offsetTop;
+                        console.log(this.top)
+                    }
+                else {
+                    item.style.border = "none";
+                }
+            });
         }
     }
 
