@@ -401,19 +401,24 @@ div.schedule__box--time:nth-child(15) {
     bottom: 1px;
 }
 
-.schedule__taskTime {
-    font-size: 12px;
-}
-
-.schedule__taskText {
-    font-size: 11px;
+.schedule__taskLabelText {
     width: 80%;
+    pointer-events : none;
     overflow: hidden;
     white-space: normal;
 }
 
+.schedule__taskLabelText--hours {
+    font-size: 12px;
+}
+
+.schedule__taskLabelText--title {
+    font-size: 11px;
+}
+
 .schedule__iconSmile {
     font-size: 11px;
+    pointer-events : none;
 }
 
 .iconhelp1 {
@@ -423,11 +428,12 @@ div.schedule__box--time:nth-child(15) {
 
 .iconhelp2 {
     -webkit-filter: sepia(1) saturate(2) hue-rotate(340deg);
-            filter: sepia(1) saturate(2) hue-rotate(340deg);     
+            filter: sepia(1) saturate(2) hue-rotate(340deg);    
 }
 
 .schedule__mark {
     font-size: 12px;
+    pointer-events : none;
 }
 
 .schedule__iconClose {

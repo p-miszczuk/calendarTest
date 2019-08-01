@@ -5,6 +5,7 @@ import AddForm from "./AddTaskForm";
 class DayColumn extends React.Component {
 
     state = {
+        columns: [],
         activeDate: "07.07.2015",
         actualHour: "13:00",
         title: "",
@@ -63,6 +64,10 @@ class DayColumn extends React.Component {
 
         ]
     };
+
+    top = 0;
+    prevTop = 0;
+    prevColumn = null;
 
     createHoures = () => {
         let pos = 0;
@@ -221,18 +226,20 @@ class DayColumn extends React.Component {
 
     componentDidMount() {
         const hours = this.createHoures();
+        const columns = document.querySelectorAll(".gridBox");
         this.setState({
-            hours
+            hours,
+            columns
         })
     }
 
-    top = 0;
-    prevTop = 0;
-    prevColumn = null;
-
     handleMosueDown = e => {
         e.preventDefault();
-
+        e.stopPropagation();
+      
+        // if task
+        if (e.target.className === "schedule__task" ) {
+    
         this.prevTop = e.target.style.top;
         this.prevColumn = e.target.parentElement;
         
@@ -241,24 +248,23 @@ class DayColumn extends React.Component {
         e.target.style.top = e.pageY-e.target.offsetHeight/2+"px";
 
         document.body.append(e.target);
-        
+
+        }
     }
 
     handleMouseMove = e => {
         e.preventDefault();
+        e.stopPropagation();
         
         if (e.target.style.position === "fixed") {
             e.target.style.left = e.pageX-e.target.offsetWidth/2+"px";
             e.target.style.top = e.pageY-e.target.offsetHeight/2+"px";
-
-            // get wrappers
-            let columns = document.querySelectorAll(".gridBox");
-           
+                  
             let box = null, 
                 top = null, 
                 left = null;
             
-            columns.forEach(column => {
+            this.state.columns.forEach(column => {
                 box = column.getBoundingClientRect();
                 top = Math.ceil(box.top);
                 left = Math.ceil(box.left);
@@ -274,26 +280,29 @@ class DayColumn extends React.Component {
 
     handleMouseUp = e => {
         e.preventDefault();
-        document.body.removeChild(e.target);
+        e.stopPropagation();
+        
+        if (e.target.className === "schedule__task" ) {
+            document.body.removeChild(e.target);
 
-        const columns = document.querySelectorAll(".gridBox");
-        let column = 0, left = 0, top = 0;
+            let column = 0, left = 0, top = 0;
 
-        const action = [...columns].find(item => {
-            column = item.getBoundingClientRect();
-            left = Math.ceil(column.left);
-            top = Math.ceil(column.top);
-            
-            if (e.pageX-e.target.offsetWidth/2 > left -10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + item.offsetWidth + 10
-                && e.pageY-e.target.offsetHeight/2 >= top - 5 && e.pageY-e.target.offsetHeight/2 + e.target.offsetHeight-5 < top + item.offsetHeight + 5) {
-                return item;
-            }
+            const action = [...this.state.columns].find(item => {
+                column = item.getBoundingClientRect();
+                left = Math.ceil(column.left);
+                top = Math.ceil(column.top);
+                
+                if (e.pageX-e.target.offsetWidth/2 > left -10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + item.offsetWidth + 10
+                    && e.pageY-e.target.offsetHeight/2 >= top - 5 && e.pageY-e.target.offsetHeight/2 + e.target.offsetHeight-5 < top + item.offsetHeight + 5) {
+                    return item;
+                }
 
-            return false;  
-        });
+                return false;  
+            });
 
-        typeof action === "object" ? this.setColumn(e, this.top, action) 
+            typeof action === "object" ? this.setColumn(e, this.top, action) 
                                    : this.setColumn(e, Number(this.prevTop.slice(0,this.prevTop.length-2)), this.prevColumn);
+        }
     }
 
     setColumn = (e, topPos, target) => {

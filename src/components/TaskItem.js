@@ -29,22 +29,19 @@ const Task = props => {
         iconhelp2: val !== "after"
     })
     
-    const task =  (
+    return  (
         <div className={`schedule__task`} style={styles} onMouseDown={props.down} onMouseMove={props.move} onMouseUp={props.up}>
-            {/* <p className="schedule__taskTime" onM>
+            <p className="schedule__taskLabelText schedule__taskLabelText--hours" >
             <time dateTime={time} >{time}</time>
             </p>
-            <p className="schedule__taskText" onMouseDownCapture="false">{title}</p>
-            <div className="schedule__additionalInfo" onMouseDownCapture="false" >
+            <p className="schedule__taskLabelText schedule__taskLabelText--title" >{title}</p>
+            <div className="schedule__additionalInfo" >
                 {val === "now" ? <span className="schedule__mark">!</span> : ""}
-                {(val === "after" || val === "now") ? <span className={className} role="img" aria-label="smile" onMouseDownCapture="false">&#128578;</span> : ""}
+                {(val === "after" || val === "now") ? <span className={className} role="img" aria-label="smile" >&#128578;</span> : ""}
                 {val === "before" ? <span className="schedule__iconClose">+</span> : ""}
-            </div> */}
-            asdasd
+            </div>
         </div>
     );
-
-    return task;
 }
 
 export default Task;
