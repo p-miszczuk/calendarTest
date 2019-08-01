@@ -235,6 +235,13 @@ class DayColumn extends React.Component {
         
     }
 
+    handleMouseMove = e => {
+        if (e.target.style.position === "fixed") {
+            e.target.style.left = e.pageX-e.target.offsetWidth/2+"px";
+            e.target.style.top = e.pageY-e.target.offsetHeight/2+"px";
+        }
+    }
+
     render() { 
         console.log(this.state.minutes)
        return (
@@ -245,7 +252,8 @@ class DayColumn extends React.Component {
                                day={item.date}
                                activeDate={this.state.activeDate} 
                                tasks={item.tasks}
-                               down={this.handleMosueDown} 
+                               down={this.handleMosueDown}
+                               move={this.handleMouseMove}
                                click={(e,idItem,day) => this.handleTaskClick(e,idItem,day)} />
                 ))
             }
