@@ -239,15 +239,16 @@ class DayColumn extends React.Component {
       
         // if task
         if (e.target.className === "schedule__task" ) {
-    
+        const shiftX = e.clientX - Math.floor(e.target.getBoundingClientRect().left);
+        const shiftY = e.clientY - Math.floor(e.target.getBoundingClientRect().top);
         this.prevTop = e.target.style.top;
         this.prevColumn = e.target.parentElement;
-        
-        e.target.style.position = "fixed";
-        e.target.style.left = e.pageX-e.target.offsetWidth/2+"px";
-        e.target.style.top = e.pageY-e.target.offsetHeight/2+"px";
 
+        e.target.style.position = "fixed";
         document.body.append(e.target);
+
+        e.target.style.left = e.pageX - shiftX + "px";
+        e.target.style.top = e.pageY - shiftY +"px";
 
         }
     }
@@ -259,6 +260,9 @@ class DayColumn extends React.Component {
         if (e.target.style.position === "fixed") {
             e.target.style.left = e.pageX-e.target.offsetWidth/2+"px";
             e.target.style.top = e.pageY-e.target.offsetHeight/2+"px";
+            console.clear();
+            console.log(e.pageX-e.target.offsetWidth/2);
+            console.log(e.pageX-e.nativeEvent.offsetX);
                   
             let box = null, 
                 top = null, 
