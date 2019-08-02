@@ -6,7 +6,7 @@ const Task = props => {
 
     let height = "";
     let heightBox = 34; //15 minutes box hight
-    Number(minute) === 15 ? height = 34+"px" : height = heightBox+35*minute/15-1; //others box height (69,104,139 ...)
+    Number(minute) === 15 ? height = 34+"px" : height = heightBox+35*(minute/15-1); //others box height (69,104,139 ...)
     
     let event = "";
 
