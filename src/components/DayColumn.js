@@ -322,7 +322,9 @@ class DayColumn extends React.Component {
             if (item.date === date) 
                 item.tasks.map(task => {
                     if (task.id === e.target.id) {
-                        task.time = drop.hour
+                        let secHour = Number(`${this.addTime(drop.hour, `0.${task.minute}`)}`);
+                        secHour = secHour.toFixed(2).length <= 4 ? `0${secHour.toFixed(2)}` : secHour.toFixed(2); 
+                        task.time = `${drop.hour} - ${secHour}`;
                         return item
                     }
                     return item
