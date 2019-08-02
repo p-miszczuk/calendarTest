@@ -583,3 +583,7 @@ div.schedule__box--time:nth-child(15) {
    v2.0 | 20110126
    License: none (public domain)
 */
+
+.date {
+    display: none;
+}

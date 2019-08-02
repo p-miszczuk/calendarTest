@@ -12,7 +12,8 @@ const BoxColumn = props => (
         <TasksList task={props.tasks} 
                    down={props.down}
                    move={props.move}
-                   up={props.up} />
+                   up={props.up} 
+                   day={props.day} />
 
     </div>
 );

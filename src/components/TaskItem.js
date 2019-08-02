@@ -30,7 +30,7 @@ const Task = props => {
     })
     
     return  (
-        <div className={`schedule__task`} style={styles} onMouseDown={props.down} onMouseMove={props.move} onMouseUp={props.up}>
+        <div className={`schedule__task`} id={id}  style={styles} onMouseDown={props.down} onMouseMove={props.move} onMouseUp={props.up} >
             <p className="schedule__taskLabelText schedule__taskLabelText--hours" >
             <time dateTime={time} >{time}</time>
             </p>
@@ -40,6 +40,7 @@ const Task = props => {
                 {(val === "after" || val === "now") ? <span className={className} role="img" aria-label="smile" >&#128578;</span> : ""}
                 {val === "before" ? <span className="schedule__iconClose">+</span> : ""}
             </div>
+            <div className="date">{day}</div>
         </div>
     );
 }

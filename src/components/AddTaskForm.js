@@ -6,7 +6,6 @@ const AddForm = props => {
         'newTask': true,
         'newTask--display': props.display
     });
-    console.log(props.date + " " + props.minutes)
     return (
     <div className={task}>
         <form action="" onSubmit={props.submit}>

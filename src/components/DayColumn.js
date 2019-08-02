@@ -24,7 +24,7 @@ class DayColumn extends React.Component {
                         val: "after",
                         minute: 15,
                         title: "Task 1",
-                        time: "06:30",
+                        time: "06:00 - 06.15",
                         top: "0px"
                     },
                     {
@@ -32,7 +32,7 @@ class DayColumn extends React.Component {
                         val: "after",
                         minute: 30,
                         title: "Task 2",
-                        time: "06:30",
+                        time: "07.00 - 07.30",
                         top: "140px"
                     }
                 ]
@@ -79,7 +79,7 @@ class DayColumn extends React.Component {
         let hourSave = "";
         let jump = 0;
         let arr = [];
-        const loop = 61;
+        const loop = 60;
 
         for (let i=0; i<loop; i++)
         {   
@@ -314,7 +314,26 @@ class DayColumn extends React.Component {
     }
 
     setColumn = (e, topPos, target) => {
+        
         const drop = this.state.hours.find(item => item.pos > topPos - 25);
+        const date = e.target.children[3].innerHTML;
+        
+        let data = this.state.data.map(item => {
+            if (item.date === date) 
+                item.tasks.map(task => {
+                    if (task.id === e.target.id) {
+                        task.time = drop.hour
+                        return item
+                    }
+                    return item
+                })
+            return item;
+        });
+
+        this.setState({
+            data
+        })
+
         e.target.style.position = "absolute";
         e.target.style.top = drop.pos + "px";
         e.target.style.left = 0+"px";
@@ -332,7 +351,7 @@ class DayColumn extends React.Component {
                                tasks={item.tasks}
                                down={this.handleMosueDown}
                                move={this.handleMouseMove}
-                               up={this.handleMouseUp}
+                               up={(e,id) =>  this.handleMouseUp(e)}
                                click={(e,idItem,day) => this.handleTaskClick(e,idItem,day)} />
                 ))
             }
