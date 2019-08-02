@@ -403,8 +403,8 @@ div.schedule__box--time:nth-child(15) {
 
 .schedule__taskLabelText {
     width: 80%;
-    pointer-events : none;
     overflow: hidden;
+    pointer-events: none;
     white-space: normal;
 }
 

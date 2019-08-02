@@ -65,9 +65,13 @@ class DayColumn extends React.Component {
         ]
     };
 
-    top = 0;
-    prevTop = 0;
-    prevColumn = null;
+    moveBox = {
+        top: 0,
+        prevTop: 0,
+        prevColumn: null,
+        shiftX: 0,
+        shiftY: 0
+    }
 
     createHoures = () => {
         let pos = 0;
@@ -236,19 +240,21 @@ class DayColumn extends React.Component {
     handleMosueDown = e => {
         e.preventDefault();
         e.stopPropagation();
-      
+        
         // if task
         if (e.target.className === "schedule__task" ) {
-        const shiftX = e.clientX - Math.floor(e.target.getBoundingClientRect().left);
-        const shiftY = e.clientY - Math.floor(e.target.getBoundingClientRect().top);
-        this.prevTop = e.target.style.top;
-        this.prevColumn = e.target.parentElement;
+        
+            this.shiftX = e.clientX - Math.floor(e.target.getBoundingClientRect().left);
+            this.shiftY = e.clientY - Math.floor(e.target.getBoundingClientRect().top);
+            
+            this.prevTop = e.target.style.top;
+            this.prevColumn = e.target.parentElement;
 
-        e.target.style.position = "fixed";
-        document.body.append(e.target);
+            e.target.style.position = "fixed";
+            document.body.append(e.target);
 
-        e.target.style.left = e.pageX - shiftX + "px";
-        e.target.style.top = e.pageY - shiftY +"px";
+            e.target.style.left = e.pageX - this.shiftX + "px";
+            e.target.style.top = e.pageY - this.shiftY +"px";
 
         }
     }
@@ -258,11 +264,9 @@ class DayColumn extends React.Component {
         e.stopPropagation();
         
         if (e.target.style.position === "fixed") {
-            e.target.style.left = e.pageX-e.target.offsetWidth/2+"px";
-            e.target.style.top = e.pageY-e.target.offsetHeight/2+"px";
-            console.clear();
-            console.log(e.pageX-e.target.offsetWidth/2);
-            console.log(e.pageX-e.nativeEvent.offsetX);
+            
+            e.target.style.left = e.pageX-this.shiftX+"px";
+            e.target.style.top = e.pageY-this.shiftY+"px";
                   
             let box = null, 
                 top = null, 
@@ -273,11 +277,11 @@ class DayColumn extends React.Component {
                 top = Math.ceil(box.top);
                 left = Math.ceil(box.left);
                 
-                if (e.pageX-e.target.offsetWidth/2  >= left - 10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + column.offsetWidth + 10 && 
-                    e.pageY-e.target.offsetHeight/2 >= top - 5 && e.pageY-e.target.offsetHeight/2 + e.target.offsetHeight-5 < top + column.offsetHeight + 5)
-                    {
-                        this.top = e.target.offsetTop - top;
-                    }
+                if (e.pageX - this.shiftX >= left - 10 && e.pageX - this.shiftX + e.target.offsetWidth < left + column.offsetWidth + 10 && 
+                    e.pageY - this.shiftY >= top - 5   && e.pageY - this.shiftY + e.target.offsetHeight-5 < top + column.offsetHeight + 5)
+                {
+                    this.top = e.target.offsetTop-top;
+                }
             });
         }
     }
@@ -287,7 +291,6 @@ class DayColumn extends React.Component {
         e.stopPropagation();
         
         if (e.target.className === "schedule__task" ) {
-            document.body.removeChild(e.target);
 
             let column = 0, left = 0, top = 0;
 
@@ -296,8 +299,9 @@ class DayColumn extends React.Component {
                 left = Math.ceil(column.left);
                 top = Math.ceil(column.top);
                 
-                if (e.pageX-e.target.offsetWidth/2 > left -10 && e.pageX-e.target.offsetWidth/2 + e.target.offsetWidth < left + item.offsetWidth + 10
-                    && e.pageY-e.target.offsetHeight/2 >= top - 5 && e.pageY-e.target.offsetHeight/2 + e.target.offsetHeight-5 < top + item.offsetHeight + 5) {
+                if (e.pageX - this.shiftX > left -10 && e.pageX - this.shiftX + e.target.offsetWidth  < left + item.offsetWidth + 10 && 
+                    e.pageY - this.shiftY > top - 5  && e.pageY - this.shiftY + e.target.offsetHeight < top + item.offsetHeight + 5) {
+                        
                     return item;
                 }
 
@@ -310,7 +314,7 @@ class DayColumn extends React.Component {
     }
 
     setColumn = (e, topPos, target) => {
-        const drop = this.state.hours.find(item => item.pos >= topPos);
+        const drop = this.state.hours.find(item => item.pos > topPos - 25);
         e.target.style.position = "absolute";
         e.target.style.top = drop.pos + "px";
         e.target.style.left = 0+"px";
@@ -342,6 +346,7 @@ class DayColumn extends React.Component {
                     minutes={this.state.minutes}
                     date={this.state.date}
                     hours={this.state.hours} />
+            
             </React.Fragment>
         );
     }
