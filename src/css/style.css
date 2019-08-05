@@ -15,18 +15,19 @@ body {
 }
 
 /* scrollbar */
-/* -webkit-scrollbar {
+::-webkit-scrollbar {
     width: 10px;
+    height: 10px
 }
 
-.schedule__boxes::-webkit-scrollbar-track {
-    background: transparent;
+::-webkit-scrollbar-track {
+    background: white;
 }
 
-.schedule__boxes::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: #7d7c7c;
     border-radius: 5px;
-} */
+}
 
 .calendar__wrapper {
     width: 820px;
@@ -188,7 +189,7 @@ body {
     overflow-x: hidden;
     position: relative;
     overflow: auto;
-    height: 75vh;;
+    height: 79vh;
 }
 
 /* time bar */
@@ -268,7 +269,7 @@ body {
     display: -ms-inline-flexbox;
     display: flex;
     width: 100%;
-    min-width: 900px;
+    min-width: 880px;
     position: sticky;
     top: 0px;
     left: 0px;

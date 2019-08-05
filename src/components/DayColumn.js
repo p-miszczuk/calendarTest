@@ -166,8 +166,7 @@ class DayColumn extends React.Component {
                 
                 const day = date.split("-").reverse().join(".");
                 let stateClone = this.state.data;
-    
-           
+
                 stateClone = stateClone.filter(item => item.date === day)
                 
                 let maxId = this.maxID(stateClone[0],stateClone[0].tasks.length);
@@ -195,18 +194,21 @@ class DayColumn extends React.Component {
                         top: `${pos[0].pos}px`
                     }
                     
-                    const obj = {
-                        date: day,
-                        tasks: stateClone[0].tasks.concat(taskValues)
-                    }
-
                     this.setState({
                         displayForm: false,
                         title: "",
                         hour: "",
                         minutes: "15 min",
                         date: "",
-                        data: this.state.data.map(item => item.date === day ? obj : item)
+                        data: this.state.data.map(item => { 
+                            if (item.date === day) {
+                                return {
+                                    date: item.date, 
+                                    tasks: [...item.tasks, taskValues]
+                                }
+                            }
+                            return item
+                        })
                     });                
                 }
             }
