@@ -145,6 +145,13 @@ class DayColumn extends React.Component {
         return now.getHours() + "." + now.getMinutes();
     };
 
+    maxID = (data, len) => {
+        if (len === 0) return 1;
+        
+        let maxid = data.tasks.map(task => task.id);
+        return Number(maxid.sort().reverse()[0]) + 1;
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         
@@ -160,17 +167,10 @@ class DayColumn extends React.Component {
                 const day = date.split("-").reverse().join(".");
                 let stateClone = this.state.data;
     
-                let maxId = 0;
+           
                 stateClone = stateClone.filter(item => item.date === day)
-                let tasks = stateClone[0].tasks.length;
                 
-                if (tasks === 0) 
-                    maxId = 1;
-                else {
-                    maxId = stateClone[0].tasks.map(item => item.id);
-                    maxId = maxId.sort().reverse()[0];
-                    maxId = Number(maxId) + 1;
-                } 
+                let maxId = this.maxID(stateClone[0],stateClone[0].tasks.length);
 
                 if (maxId > 0) {
                     
@@ -326,7 +326,8 @@ class DayColumn extends React.Component {
         e.stopPropagation();
         
         if (e.target.className === "schedule__task") {
-
+            
+            const shift = this.state.shift;
             let column = 0, left = 0, top = 0;
 
             const action = [...this.state.columns].find(item => {
@@ -334,47 +335,58 @@ class DayColumn extends React.Component {
                 left = Math.ceil(column.left);
                 top = Math.ceil(column.top);
                 
-                if (e.pageX - this.shiftX > left -10 && e.pageX - this.shiftX + e.target.offsetWidth  < left + item.offsetWidth + 10 && 
-                    e.pageY - this.shiftY > top - 5  && e.pageY - this.shiftY + e.target.offsetHeight < top + item.offsetHeight + 5) {
-                        
-                    return item;
+                if (e.pageX - shift[0] > left -10 && e.pageX - shift[0] + e.target.offsetWidth  < left + item.offsetWidth + 10 && 
+                    e.pageY - shift[1] > top - 5  && e.pageY - shift[1] + e.target.offsetHeight < top + item.offsetHeight + 5) {
+                    
+                    return item;  
                 }
-
-                return false;  
             });
 
-            // typeof action === "object" ? this.setColumn(e, this.top, action) 
-            //                        : this.setColumn(e, Number(this.prevTop.slice(0,this.prevTop.length-2)), this.prevColumn);
+            typeof action === "object" ? this.setColumn(e, this.state.top, action) : this.setColumn(e, this.state.prevTop.slice(0,this.state.prevTop.length-2), this.state.prevColumn);
         }
+    }
+
+    setHours = (hour,minute) => {
+
+        let secHour = Number(`${this.addTime(hour, `0.${minute}`)}`);
+        secHour = secHour.toFixed(2).length <= 4 ? `0${secHour.toFixed(2)}` : secHour.toFixed(2); 
+        return `${hour} - ${secHour}`;
     }
 
     setColumn = (e, topPos, target) => {
         
-        const drop = this.state.hours.find(item => item.pos > topPos - 25);
-        const date = e.target.children[3].innerHTML;
-        
-        let data = this.state.data.map(item => {
-            if (item.date === date) 
-                item.tasks.map(task => {
-                    if (task.id === e.target.id) {
-                        let secHour = Number(`${this.addTime(drop.hour, `0.${task.minute}`)}`);
-                        secHour = secHour.toFixed(2).length <= 4 ? `0${secHour.toFixed(2)}` : secHour.toFixed(2); 
-                        task.time = `${drop.hour} - ${secHour}`;
-                        return item
-                    }
-                    return item
-                })
-            return item;
-        });
+        const { data, moveTask, activeDate, actualHour, hours } = this.state;
+        // const prevDay = e.target.children[3].innerHTML;
+        const dataClone = data.filter(item => item.date === target.id)
+        let maxId = this.maxID(dataClone[0],dataClone[0].tasks.length);
+       
+        let taskMove = moveTask;
+        const drop = hours.find(item => item.pos > topPos - 25)
+
+        let event = null;
+        if (target.id <= activeDate) 
+            drop.hour < actualHour ? event = "after" : event = "before";
+        else
+            event = "before";
+
+        taskMove.top = drop.pos + "px";
+        taskMove.time = this.setHours(drop.hour, "0"+taskMove.minute);
+        taskMove.id = maxId.toString();
+        taskMove.val = event;
 
         this.setState({
-            data
-        })
+            data: this.state.data.map(data => {
+                if (data.date === target.id) {
+                    return {
+                        date: data.date, tasks: [...data.tasks, taskMove]
+                    }
+                }
+                return data
+            })
+        });
 
-        e.target.style.position = "absolute";
-        e.target.style.top = drop.pos + "px";
-        e.target.style.left = 0+"px";
-        target.appendChild(e.target);
+        document.body.removeChild(e.target.parentNode)
+        
     }
 
     render() { 
