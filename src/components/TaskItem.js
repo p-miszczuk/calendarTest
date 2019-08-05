@@ -30,7 +30,7 @@ const Task = props => {
     })
     
     return  (
-        <div className={`schedule__task`} id={id}  style={styles} onMouseDown={props.down} onMouseMove={props.move} onMouseUp={props.up} >
+        <div className={`schedule__task`} id={id}  style={styles} onMouseDown={props.down} >
             <p className="schedule__taskLabelText schedule__taskLabelText--hours" >
             <time dateTime={time} >{time}</time>
             </p>
@@ -38,7 +38,7 @@ const Task = props => {
             <div className="schedule__additionalInfo" >
                 {val === "now" ? <span className="schedule__mark">!</span> : ""}
                 {(val === "after" || val === "now") ? <span className={className} role="img" aria-label="smile" >&#128578;</span> : ""}
-                {val === "before" ? <span className="schedule__iconClose">+</span> : ""}
+                {val === "before" ? <span className="schedule__iconClose" onClick={props.close}>+</span> : ""}
             </div>
             <div className="date">{day}</div>
         </div>

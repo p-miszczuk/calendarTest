@@ -14,7 +14,12 @@ class DayColumn extends React.Component {
         date: "",
         checkMin: ["15","30","45","60"],
         displayForm: false,
+        prevColumn: null,
+        top: 0,
+        prevTop: 0,
         hours: [],
+        moveTask: null,
+        shift: [],
         data: [
             {
                 date: "06.07.2015",
@@ -65,13 +70,7 @@ class DayColumn extends React.Component {
         ]
     };
 
-    moveBox = {
-        top: 0,
-        prevTop: 0,
-        prevColumn: null,
-        shiftX: 0,
-        shiftY: 0
-    }
+    clone = null;
 
     createHoures = () => {
         let pos = 0;
@@ -150,7 +149,7 @@ class DayColumn extends React.Component {
         e.preventDefault();
         
         const {date, title, minutes, hour, checkMin, activeDate, actualHour } = this.state;
-        console.log(date)
+       
         if (date.length > 0 && title.length > 0 && minutes.length > 0 && hour.length > 0) {
             
             const min = minutes.substr(0,2);
@@ -243,19 +242,52 @@ class DayColumn extends React.Component {
         
         // if task
         if (e.target.className === "schedule__task" ) {
-        
-            this.shiftX = e.clientX - Math.floor(e.target.getBoundingClientRect().left);
-            this.shiftY = e.clientY - Math.floor(e.target.getBoundingClientRect().top);
+            console.log("jest")
             
-            this.prevTop = e.target.style.top;
-            this.prevColumn = e.target.parentElement;
+            let shift = [];
+            shift[0] = e.clientX - Math.ceil(e.target.getBoundingClientRect().left);
+            shift[1] = e.clientY - Math.floor(e.target.getBoundingClientRect().top);
+            
+            this.clone = document.createElement("div");
+           
+            let cloneTask = e.target.cloneNode(true);
+            this.clone.appendChild(cloneTask);
+            cloneTask.style.top = "0px";            
+        
+            this.clone.style.position = "fixed";
+            this.clone.style.top = e.pageY - shift[1] +"px";
+            this.clone.style.left = e.pageX - shift[0] +"px";
+            this.clone.style.width = e.target.offsetWidth + "px";
+            this.clone.style.height = e.target.offsetHeight + "px";
+            this.clone.style.zIndex = "99999";
+            this.clone.onmousemove = this.handleMouseMove;
+            this.clone.onmouseup = this.handleMouseUp;
+        
+            document.body.appendChild(this.clone)
+            const prevColumn = e.target.parentNode;
+            let columnDate = e.target.parentNode.id;    
+            let moveTask = null;
 
-            e.target.style.position = "fixed";
-            document.body.append(e.target);
+            let prevTop = e.target.style.top; //with px!!
 
-            e.target.style.left = e.pageX - this.shiftX + "px";
-            e.target.style.top = e.pageY - this.shiftY +"px";
-
+            this.setState({
+                data: this.state.data.map(item => {
+                    if (item.date === columnDate)
+                    {
+                        return {date: columnDate, tasks: item.tasks.filter(task => {
+                            if (task.id !== e.target.id) 
+                                return task
+                            else
+                                moveTask = task
+                        }) }
+                    }
+                    return item
+                }),
+                moveTask,
+                prevColumn,
+                prevTop,
+                shift
+            });       
         }
     }
 
@@ -263,10 +295,11 @@ class DayColumn extends React.Component {
         e.preventDefault();
         e.stopPropagation();
         
-        if (e.target.style.position === "fixed") {
+        if (this.clone.style.position === "fixed") {
             
-            e.target.style.left = e.pageX-this.shiftX+"px";
-            e.target.style.top = e.pageY-this.shiftY+"px";
+            const shift = this.state.shift;
+            this.clone.style.left = e.pageX-shift[0]+"px";
+            this.clone.style.top = e.pageY-shift[1]+"px";
                   
             let box = null, 
                 top = null, 
@@ -277,10 +310,12 @@ class DayColumn extends React.Component {
                 top = Math.ceil(box.top);
                 left = Math.ceil(box.left);
                 
-                if (e.pageX - this.shiftX >= left - 10 && e.pageX - this.shiftX + e.target.offsetWidth < left + column.offsetWidth + 10 && 
-                    e.pageY - this.shiftY >= top - 5   && e.pageY - this.shiftY + e.target.offsetHeight-5 < top + column.offsetHeight + 5)
-                {
-                    this.top = e.target.offsetTop-top;
+                if (e.pageX - shift[0] >= left - 10 && e.pageX - shift[0]+ e.target.offsetWidth < left + column.offsetWidth + 10 && 
+                    e.pageY - shift[1] >= top - 5   && e.pageY - shift[1] + e.target.offsetHeight-5 < top + column.offsetHeight + 5)
+                {   
+                    this.setState({
+                       top: e.target.parentNode.offsetTop - top 
+                    })                    
                 }
             });
         }
@@ -290,7 +325,7 @@ class DayColumn extends React.Component {
         e.preventDefault();
         e.stopPropagation();
         
-        if (e.target.className === "schedule__task" ) {
+        if (e.target.className === "schedule__task") {
 
             let column = 0, left = 0, top = 0;
 
@@ -308,8 +343,8 @@ class DayColumn extends React.Component {
                 return false;  
             });
 
-            typeof action === "object" ? this.setColumn(e, this.top, action) 
-                                   : this.setColumn(e, Number(this.prevTop.slice(0,this.prevTop.length-2)), this.prevColumn);
+            // typeof action === "object" ? this.setColumn(e, this.top, action) 
+            //                        : this.setColumn(e, Number(this.prevTop.slice(0,this.prevTop.length-2)), this.prevColumn);
         }
     }
 
@@ -344,33 +379,31 @@ class DayColumn extends React.Component {
 
     render() { 
        return (
-            <React.Fragment>
-            {
-                this.state.data.map(item => (
-                    <BoxColumn key={item.date} 
-                               day={item.date}
-                               activeDate={this.state.activeDate} 
-                               tasks={item.tasks}
-                               down={this.handleMosueDown}
-                               move={this.handleMouseMove}
-                               up={(e,id) =>  this.handleMouseUp(e)}
-                               click={(e,idItem,day) => this.handleTaskClick(e,idItem,day)} />
-                ))
-            }
-            <AddForm display={this.state.displayForm} 
-                    changeText = {(e) => this.handleChange(e)} 
-                    changeDate = {(e) => this.handleChangeDate(e)}
-                    submit = {(e) => this.handleSubmit(e)}
-                    close = {this.handleClose}
-                    title={this.state.title} 
-                    hour={this.state.hour}
-                    minutes={this.state.minutes}
-                    date={this.state.date}
-                    hours={this.state.hours} />
-            
-            </React.Fragment>
+        <div className="schedule__plan">
+        {
+            this.state.data.map(item => (
+                <BoxColumn key={item.date} 
+                           day={item.date}
+                           activeDate={this.state.activeDate} 
+                           tasks={item.tasks}
+                           down={this.handleMosueDown}
+                           click={(e,idItem,day) => this.handleTaskClick(e,idItem,day)} />
+            ))
+        }
+        <AddForm display={this.state.displayForm} 
+                changeText = {(e) => this.handleChange(e)} 
+                changeDate = {(e) => this.handleChangeDate(e)}
+                submit = {(e) => this.handleSubmit(e)}
+                close = {this.handleClose}
+                title={this.state.title} 
+                hour={this.state.hour}
+                minutes={this.state.minutes}
+                date={this.state.date}
+                hours={this.state.hours} />
+           
+        </div>
         );
     }
 };
 
-export default DayColumn;    
+export default DayColumn;

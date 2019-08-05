@@ -336,14 +336,6 @@ div.schedule__box--time:nth-child(15) {
 }
 
 /* schedule tasks*/
-.schedule__tasks {
-    position: absolute;
-    width: 109px;
-    left: 0px;
-    top: 0px;
-    
-}
-
 .schedule__task {
     position: absolute;
     left: 0px;
@@ -360,39 +352,6 @@ div.schedule__box--time:nth-child(15) {
     padding: 1px;
     border: 1px solid white;
 }
-
-/* .schedule__free {
-    background-color: antiquewhite;
-    margin: 1px 0 1px 0;
-} */
-
-/* .schedule__task--after {
-    background-color: #d6ecff;
-}
-
-.schedule__task--before {
-    background-color: #93d7fb;
-}
-
-.schedule__task--now {
-    background-color: #fdd466;
-} */
-
-/* .schedule__task--15 {
-    height: 34px;
-}
-
-.schedule__task--30 {
-    height: 69px;
-}
-
-.schedule__task--45 {
-    height: 104px;
-}
-
-.schedule__task--60 {
-    height: 139px;
-} */
 
 /* inside task */
 .schedule__additionalInfo {
@@ -441,17 +400,18 @@ div.schedule__box--time:nth-child(15) {
     opacity: 0;
     border: 1px solid black;
     border-radius: 50%;
-    font-weight: bold;
-    font-size: 17px;
-    width: 14px;
-    height: 14px;
+    padding: 0.5px 1px;
     text-align: center;
-    line-height: 14px;
-    -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
     cursor: pointer;
     -webkit-transition: opacity 0.1s;
     transition: opacity 0.1s;
+    font-weight: bold;
+    font-size: 16px;
+    width: 14px;
+    height: 14px;    
+    line-height: 12px;
+    transform: rotate(45deg);
+    padding-left: 1.5px;
 }
 
 .schedule__iconClose:hover {
@@ -570,19 +530,6 @@ div.schedule__box--time:nth-child(15) {
     background-color: var(--white);
     border: 1px solid #222;
 }
-
-/* .addTask__buttons > button:first-child {
-    border: 1px solid green;
-}
-
-.addTask__buttons > button:last-child {
-    border: 1px solid rgb(230, 5, 5);
-} */
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 
 .date {
     display: none;
